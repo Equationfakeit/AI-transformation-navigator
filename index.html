@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f8f5" />
+  <meta name="description" content="AI Transformation Navigator — an independent, transparent enterprise AI strategy assessment prototype." />
+  <title>AI Transformation Navigator — Strategy Studio</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#diagnose" aria-label="AI Transformation Navigator home">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div class="brand-type"><strong>ATN<span class="brand-dot">.</span></strong><small>STRATEGY STUDIO</small></div>
+      </a>
+      <div class="sidebar-section-label">WORKSPACE <span>01 / 04</span></div>
+      <nav class="navigation" aria-label="Primary navigation">
+        <button type="button" class="nav-link active" data-view="diagnose" aria-current="page"><span class="nav-icon">◫</span><span>Overview & diagnosis</span><span class="nav-step">01</span></button>
+        <button type="button" class="nav-link" data-view="prioritize"><span class="nav-icon">⌘</span><span>Opportunity mapping</span><span class="nav-step">02</span></button>
+        <button type="button" class="nav-link" data-view="roi"><span class="nav-icon">▥</span><span>Value simulation</span><span class="nav-step">03</span></button>
+        <button type="button" class="nav-link" data-view="report"><span class="nav-icon">▤</span><span>Strategy brief</span><span class="nav-step">04</span></button>
+      </nav>
+      <div class="sidebar-section-label case-label">CLIENT WORKSPACE <span>DEMO</span></div>
+      <div class="client-panel">
+        <label class="field-label" for="company">Company name</label>
+        <input id="company" type="text" value="Northstar Manufacturing" maxlength="70" autocomplete="off" />
+        <label class="field-label" for="sector">Industry</label>
+        <select id="sector">
+          <option>Manufacturing</option>
+          <option>Financial services</option>
+          <option>Professional services</option>
+          <option>Retail & e-commerce</option>
+          <option>Energy & infrastructure</option>
+        </select>
+        <label class="field-label" for="employees">Total employees</label>
+        <input id="employees" type="number" value="420" min="1" max="1000000" step="1" inputmode="numeric" />
+      </div>
+      <div class="sidebar-bottom">
+        <div class="live-status"><span class="live-dot"></span> Live scenario <span class="status-right">v2.0</span></div>
+        <p>Independent learning project. All inputs, ratings and projections are illustrative.</p>
+      </div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Strategy Lab</span><span class="crumb-divider">/</span><span id="breadcrumb-current">Overview</span></div>
+        <div class="topbar-actions"><span class="demo-pill"><span class="demo-spark">✦</span> DEMONSTRATION MODEL</span><span class="topbar-date" id="today">2026</span></div>
+      </header>
+      <main class="content" id="main-content">
+        <div class="eyebrow"><span class="eyebrow-line"></span> ENTERPRISE AI / DECISION INTELLIGENCE</div>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="hero-kicker">THE STRATEGY SERIES <span>— 001</span></p>
+            <h1>From AI ambition<br />to <em>business value.</em></h1>
+            <p class="hero-description">A decision-support workspace to assess readiness, prioritize AI opportunities and build a defensible business case.</p>
+            <div class="hero-tags"><span>01 / Diagnose</span><span>02 / Prioritize</span><span>03 / Model</span><span>04 / Deliver</span></div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="visual-orbit orbit-outer"></div><div class="visual-orbit orbit-inner"></div><div class="visual-ray ray-1"></div><div class="visual-ray ray-2"></div><div class="visual-ray ray-3"></div>
+            <div class="visual-center"><span>AI</span><small>STRATEGY</small></div>
+            <span class="visual-dot dot-a"></span><span class="visual-dot dot-b"></span><span class="visual-dot dot-c"></span>
+            <span class="visual-caption">ALIGNMENT → IMPACT</span>
+          </div>
+        </section>
+        <section class="metrics" aria-label="Current scenario metrics">
+          <article class="metric-card"><div class="metric-top"><span>AI readiness</span><span class="metric-symbol">↗</span></div><div class="metric-value"><strong id="metric-readiness">43.8</strong><small>/ 100</small></div><div class="metric-foot">Weighted diagnostic score</div></article>
+          <article class="metric-card"><div class="metric-top"><span>Maturity stage</span><span class="metric-symbol">◎</span></div><div class="metric-value"><strong class="metric-text" id="metric-stage">Developing</strong></div><div class="metric-foot" id="metric-stage-note">Opportunities to strengthen</div></article>
+          <article class="metric-card"><div class="metric-top"><span>AI use cases</span><span class="metric-symbol">⊞</span></div><div class="metric-value"><strong id="metric-cases">06</strong><small>scenarios</small></div><div class="metric-foot">Ranked across your industry</div></article>
+          <article class="metric-card metric-feature"><div class="metric-top"><span>Top opportunity score</span><span class="metric-symbol">↗</span></div><div class="metric-value"><strong id="metric-priority">90.1</strong><small>/ 100</small></div><div class="metric-foot" id="metric-priority-name">Research & intelligence copilot</div></article>
+        </section>
+
+        <section class="view active" id="view-diagnose" aria-labelledby="diag-title">
+          <div class="section-heading"><div><div class="section-index">PHASE 01 <span>/ BASELINE ASSESSMENT</span></div><h2 id="diag-title">Where do you stand today?</h2><p>Adjust five maturity dimensions to test how the transformation profile changes.</p></div><span class="section-corner">01—04</span></div>
+          <div class="dashboard-grid">
+            <article class="surface assessment-surface">
+              <div class="surface-head"><div><h3>Readiness assessment</h3><p>Self-assessed maturity · 1 = low, 5 = high</p></div><span class="surface-icon">◫</span></div>
+              <div class="readiness-controls" id="dimension-controls"></div>
+              <div class="formula-note"><span class="note-dot">i</span> Score = Σ [(rating − 1) ÷ 4 × dimension weight × 100]</div>
+            </article>
+            <article class="surface visual-surface">
+              <div class="surface-head"><div><h3>Capability profile</h3><p>Five dimensions / normalized to 100</p></div><span class="surface-icon">⌁</span></div>
+              <div class="radar-wrap"><svg id="radar-chart" viewBox="0 0 440 350" role="img" aria-label="Radar chart of readiness across five capability dimensions"></svg></div>
+              <div class="callout light"><span class="callout-icon">↗</span><div><strong>Initial consulting hypothesis</strong><p id="weakness-copy">Prioritize foundational capabilities before deploying higher-risk AI systems.</p></div></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="view-prioritize" aria-labelledby="prioritize-title" hidden>
+          <div class="section-heading"><div><div class="section-index">PHASE 02 <span>/ OPPORTUNITY DESIGN</span></div><h2 id="prioritize-title">Invest where impact meets feasibility.</h2><p>Six potential AI applications, ranked with a transparent and adjustable industry profile.</p></div><span class="section-corner">02—04</span></div>
+          <div class="opportunity-top" id="top-opportunities"></div>
+          <div class="dashboard-grid matrix-grid">
+            <article class="surface matrix-surface"><div class="surface-head"><div><h3>Opportunity landscape</h3><p>Higher and further right indicates a stronger near-term candidate</p></div><span class="surface-icon">⌘</span></div><div class="matrix-wrap"><svg id="matrix-chart" viewBox="0 0 700 390" role="img" aria-label="Scatterplot of AI use cases by implementation ease and business impact"></svg></div><div class="chart-legend"><span><i class="legend-dot mint"></i> Top-ranked use case</span><span><i class="legend-dot navy"></i> Other opportunities</span></div><div class="matrix-case-key" id="matrix-case-key"></div></article>
+            <article class="surface priorities-side"><div class="surface-head"><div><h3>How priorities are scored</h3><p>Heuristic model · no trained dataset</p></div><span class="surface-icon">◎</span></div><div class="weights" id="weight-list"></div><div class="method-callout"><strong>Consulting perspective</strong><p>These are starting hypotheses. Validate each scenario using process data, stakeholder interviews and a scoped pilot.</p></div></article>
+          </div>
+          <div class="surface governance-surface"><div class="surface-head"><div><h3>Governance & pilot success metrics</h3><p>Recommended controls for the leading opportunities</p></div><span class="surface-icon">✳</span></div><div class="governance-list" id="governance-list"></div></div>
+        </section>
+
+        <section class="view" id="view-roi" aria-labelledby="roi-title" hidden>
+          <div class="section-heading"><div><div class="section-index">PHASE 03 <span>/ BUSINESS CASE</span></div><h2 id="roi-title">Give the strategy a financial case.</h2><p>Explore assumptions and estimate the value of employee capacity released.</p></div><span class="section-corner">03—04</span></div>
+          <div class="dashboard-grid roi-grid">
+            <article class="surface roi-inputs"><div class="surface-head"><div><h3>Model assumptions</h3><p>All amounts in USD · changes update instantly</p></div><span class="surface-icon">☷</span></div>
+              <div class="field-stack"><label for="usecase">Use case to model</label><select id="usecase"></select></div>
+              <div class="field-two">
+                <div class="field-stack"><label for="affected">Employees in scope</label><input id="affected" type="number" min="0" max="1000000" step="1" value="40" /></div>
+                <div class="field-stack"><label for="hours">Hours saved / week</label><input id="hours" type="number" min="0" max="168" step="0.5" value="2" /></div>
+                <div class="field-stack"><label for="cost-hour">Loaded hourly cost ($)</label><input id="cost-hour" type="number" min="0" max="1000000" step="5" value="35" /></div>
+                <div class="field-stack"><label for="weeks">Working weeks / year</label><input id="weeks" type="number" min="0" max="52" step="1" value="48" /></div>
+                <div class="field-stack"><label for="upfront">One-time cost ($)</label><input id="upfront" type="number" min="0" max="100000000" step="1000" value="40000" /></div>
+                <div class="field-stack"><label for="recurring">Annual recurring cost ($)</label><input id="recurring" type="number" min="0" max="100000000" step="1000" value="18000" /></div>
+              </div>
+              <div class="range-section"><div class="range-top"><label for="adoption">Effective adoption</label><strong id="adoption-display">60%</strong></div><input id="adoption" type="range" min="0" max="100" step="5" value="60" /></div>
+              <div class="formula-note"><span class="note-dot">i</span> Value assumes released employee time can be productively redeployed.</div>
+            </article>
+            <article class="surface roi-results"><div class="surface-head"><div><h3>Financial outlook</h3><p>Illustrative annualized value scenario</p></div><span class="surface-icon">↗</span></div>
+              <div class="roi-results-grid"><div><span>Annual hours released</span><strong id="result-hours">2,304</strong></div><div><span>Gross capacity value / year</span><strong id="result-gross">$80,640</strong></div><div><span>First-year net value</span><strong id="result-net">$22,640</strong></div><div><span>Simple payback</span><strong id="result-payback">7.7 mo</strong></div></div>
+              <div class="chart-subheading"><strong>Three-year value trajectory</strong><span>UNDISCOUNTED · USD</span></div>
+              <div class="trend-chart"><svg id="roi-chart" viewBox="0 0 590 260" role="img" aria-label="Line chart of cumulative illustrative value over three years"></svg></div>
+              <div class="result-bottom"><span>First-year ROI on initial cost</span><strong id="result-roi">56.6%</strong></div>
+            </article>
+          </div>
+          <div class="roi-warning"><span>!</span><p><strong>Interpretation matters.</strong> Capacity value is not booked cost savings. Realized financial benefits depend on how released time is redeployed, actual uptake and measured operational results.</p></div>
+          <details class="details-formula"><summary>View the complete model formulas <span>+</span></summary><div>Annual hours = employees × hours saved per week × working weeks × adoption rate.<br />Annual capacity value = annual hours × hourly cost.<br />Annual net value = annual capacity value − annual recurring cost.<br />First-year net value = annual net value − one-time cost.<br />First-year ROI = first-year net value ÷ one-time cost. Simple payback = one-time cost ÷ positive annual net value × 12 months.</div></details>
+        </section>
+
+        <section class="view" id="view-report" aria-labelledby="report-title" hidden>
+          <div class="section-heading"><div><div class="section-index">PHASE 04 <span>/ EXECUTIVE DELIVERY</span></div><h2 id="report-title">Turn findings into a recommendation.</h2><p>A concise decision brief that updates with the current assessment and scenario assumptions.</p></div><span class="section-corner">04—04</span></div>
+          <div class="report-actions"><button class="action-button primary" id="download-report" type="button">↓ Download strategy brief (.md)</button><button class="action-button secondary" id="print-report" type="button">↗ Print / save PDF</button></div>
+          <article class="report-sheet" id="report-content" aria-label="Executive strategy brief"></article>
+        </section>
+
+        <footer class="footer"><div><strong>ATN<span>.</span></strong> © <span id="copyright-year"></span> · Independent strategy prototype</div><div>Not affiliated with Deloitte or any consulting firm. No external API calls.</div></footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
