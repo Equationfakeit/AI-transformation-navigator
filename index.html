@@ -38,12 +38,6 @@ button:disabled{cursor:not-allowed;opacity:.6}
 .topbar{height:74px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6.2%;gap:12px}.breadcrumbs{display:flex;gap:13px;align-items:center;color:#83918f;font-size:12px;font-weight:600}.breadcrumbs span:last-child{color:#354d47}.crumb-divider{color:#c7d2ca}.topbar-actions{display:flex;gap:20px;align-items:center}.demo-pill{border-radius:20px;border:1px solid #dcece2;padding:8px 12px;color:#337464;font-weight:800;letter-spacing:1px;font-size:9px}.demo-spark{font-size:13px;color:#c79952}.topbar-date{color:#a1aca8;font-size:11px}
 .content{max-width:1530px;padding:39px 6.2% 25px;margin:auto}
 .eyebrow{font-weight:800;letter-spacing:2.0px;font-size:10px;color:#157d65;display:flex;align-items:center;gap:10px}.eyebrow-line{width:22px;height:2px;background:#24a17f}
-.hero{min-height:285px;margin-top:24px;border-radius:17px;background:linear-gradient(120deg,#163c36 0%,#123b35 55%,#205a4d 100%);display:flex;position:relative;overflow:hidden;justify-content:space-between;isolation:isolate}
-.hero-copy{padding:34px 36px 31px;position:relative;z-index:2;width:74%}.hero-kicker{font-weight:700;font-size:10px;letter-spacing:2px;color:#a9d6c7;margin:0 0 16px}.hero-kicker span{color:#588a7b}
-.hero h1{font-family:Manrope,sans-serif;font-size:clamp(31px,3.35vw,48px);letter-spacing:-2.5px;line-height:1.17;margin:0;color:white;font-weight:650}.hero h1 em{color:#9de0bf;font-style:normal}
-.hero-description{color:#bfd4cf;line-height:1.65;max-width:590px;margin:13px 0 18px;font-size:12.5px}
-.hero-tags{display:flex;flex-wrap:wrap;gap:7px}.hero-tags span{border:1px solid #548277;border-radius:30px;color:#b6d6cd;padding:6px 10px;font-weight:700;font-size:9px;letter-spacing:.45px}
-.hero-visual{position:absolute;right:15px;top:0;height:100%;width:355px;opacity:.83}.visual-orbit{position:absolute;border:1px solid #679a86;border-radius:50%;top:50%;left:52%;transform:translate(-50%,-50%)}.orbit-outer{width:282px;height:282px;opacity:.46}.orbit-inner{width:189px;height:189px;opacity:.65}.visual-center{position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);height:103px;width:103px;background:linear-gradient(145deg,#235f52,#174537);border:1px solid #8ba89a;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#b9e0d0;box-shadow:0 0 40px #1d5549}.visual-center span{font-family:Manrope,sans-serif;font-weight:800;font-size:28px;line-height:1}.visual-center small{font-size:8px;letter-spacing:1.8px;margin-top:6px}.visual-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:#c7e4bd;box-shadow:0 0 0 7px #73ab9233}.dot-a{top:13%;left:49%}.dot-b{top:56%;right:8%}.dot-c{bottom:15%;left:22%}.visual-ray{position:absolute;width:1px;height:130px;background:#60978350;top:23%;left:52%;transform-origin:bottom center}.ray-1{transform:rotate(50deg)}.ray-2{transform:rotate(140deg)}.ray-3{transform:rotate(240deg)}.visual-caption{position:absolute;bottom:18px;right:20px;color:#8eb3a2;font-size:9px;letter-spacing:1.6px}
 .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 53px}.metric-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 18px 17px;min-width:0;box-shadow:var(--shadow)}.metric-top{display:flex;justify-content:space-between;gap:4px;font-size:11px;font-weight:650;color:#72817b;align-items:center}.metric-symbol{font-size:19px;color:#b2c2b8}.metric-value{display:flex;gap:8px;align-items:baseline;white-space:nowrap;margin-top:16px;min-height:42px}.metric-value strong{font-family:Manrope,sans-serif;letter-spacing:-1.6px;font-weight:750;font-size:32px;line-height:1.2}.metric-value small{font-size:11px;color:#899992;font-weight:600}.metric-value strong.metric-text{font-size:clamp(18px,2vw,27px);letter-spacing:-.9px;white-space:normal}.metric-foot{margin-top:7px;font-size:10px;line-height:1.5;color:#a0aaa5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric-feature{background:#e7f4ed;border-color:#d2e9d9}.metric-feature .metric-value strong{color:#0d7159}.metric-feature .metric-symbol{color:#4aa787}
 .view{animation:fadein .24s ease}.view[hidden]{display:none!important}@keyframes fadein{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .section-heading{display:flex;justify-content:space-between;gap:20px;align-items:start;margin-bottom:22px}.section-index{color:#11775e;font-weight:800;font-size:10px;letter-spacing:1.9px}.section-index span{color:#9dad9f;font-weight:700}.section-heading h2{font-family:Manrope,sans-serif;font-size:clamp(23px,2.45vw,32px);letter-spacing:-1.05px;line-height:1.3;margin:10px 0 7px}.section-heading p{color:#82918b;line-height:1.6;margin:0;font-size:12.5px}.section-corner{font-size:11px;letter-spacing:1px;color:#c3cdc5;font-weight:800;margin-top:9px;flex-shrink:0}
@@ -183,6 +177,12 @@ body { font-size: 16px; line-height: 1.55; }
   .matrix-case-key { grid-template-columns: 1fr; }
 }
 
+
+/* Minimal overview layout: no hero/banner card. */
+.metrics{margin-top:24px;}
+.topbar-actions{gap:12px;}
+.footer{justify-content:flex-start;}
+@media (max-width:730px){.metrics{margin-top:19px;}}
 
 /* EN / 中文: compact language control */
 .lang-switch{display:inline-flex;align-items:center;border:1px solid #d5e5db;background:#eef5f0;border-radius:11px;padding:4px;gap:3px;flex-shrink:0}
@@ -730,24 +730,11 @@ document.addEventListener('DOMContentLoaded',init);
     <div class="main-shell">
       <header class="topbar">
         <div class="breadcrumbs"><span>Strategy Lab</span><span class="crumb-divider">/</span><span id="breadcrumb-current">Overview</span></div>
-        <div class="topbar-actions"><div class="lang-switch" role="group" aria-label="Language / 语言"><button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button><button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button></div><span class="demo-pill"><span class="demo-spark">✦</span> DEMONSTRATION MODEL</span><span class="topbar-date" id="today">2026</span></div>
+        <div class="topbar-actions"><div class="lang-switch" role="group" aria-label="Language / 语言"><button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button><button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button></div><span class="topbar-date" id="today">2026</span></div>
       </header>
       <main class="content" id="main-content">
         <div class="eyebrow"><span class="eyebrow-line"></span> ENTERPRISE AI / DECISION INTELLIGENCE</div>
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="hero-kicker">THE STRATEGY SERIES <span>— 001</span></p>
-            <h1>From AI ambition<br />to <em>business value.</em></h1>
-            <p class="hero-description">A decision-support workspace to assess readiness, prioritize AI opportunities and build a defensible business case.</p>
-            <div class="hero-tags"><span>01 / Diagnose</span><span>02 / Prioritize</span><span>03 / Model</span><span>04 / Deliver</span></div>
-          </div>
-          <div class="hero-visual" aria-hidden="true">
-            <div class="visual-orbit orbit-outer"></div><div class="visual-orbit orbit-inner"></div><div class="visual-ray ray-1"></div><div class="visual-ray ray-2"></div><div class="visual-ray ray-3"></div>
-            <div class="visual-center"><span>AI</span><small>STRATEGY</small></div>
-            <span class="visual-dot dot-a"></span><span class="visual-dot dot-b"></span><span class="visual-dot dot-c"></span>
-            <span class="visual-caption">ALIGNMENT → IMPACT</span>
-          </div>
-        </section>
+
         <section class="metrics" aria-label="Current scenario metrics">
           <article class="metric-card"><div class="metric-top"><span>AI readiness</span><span class="metric-symbol">↗</span></div><div class="metric-value"><strong id="metric-readiness">43.8</strong><small>/ 100</small></div><div class="metric-foot">Weighted diagnostic score</div></article>
           <article class="metric-card"><div class="metric-top"><span>Maturity stage</span><span class="metric-symbol">◎</span></div><div class="metric-value"><strong class="metric-text" id="metric-stage">Developing</strong></div><div class="metric-foot" id="metric-stage-note">Opportunities to strengthen</div></article>
@@ -814,7 +801,7 @@ document.addEventListener('DOMContentLoaded',init);
           <article class="report-sheet" id="report-content" aria-label="Executive strategy brief"></article>
         </section>
 
-        <footer class="footer"><div><strong>KATHY L</strong> © <span id="copyright-year"></span> · Independent strategy prototype</div><div>Not affiliated with Deloitte or any consulting firm. No external API calls.</div></footer>
+        <footer class="footer"><div><strong>KATHY L</strong> © <span id="copyright-year"></span> · Independent strategy prototype</div></footer>
       </main>
     </div>
   </div>
