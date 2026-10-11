@@ -20,8 +20,6 @@ button:disabled{cursor:not-allowed;opacity:.6}
 .app-shell{display:flex;min-height:100vh}
 .sidebar{position:sticky;top:0;width:260px;min-width:260px;height:100vh;background:var(--sidebar);border-right:1px solid var(--line);padding:34px 19px 25px;display:flex;flex-direction:column;z-index:10;overflow-y:auto}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;margin:0 12px 54px}
-.brand-mark{background:var(--darkgreen);height:40px;width:40px;border-radius:12px;display:grid;grid-template-columns:repeat(2,7px);grid-template-rows:repeat(2,7px);gap:4px;align-content:center;justify-content:center;transform:rotate(-5deg)}
-.brand-mark span{background:#bce7d9;border-radius:2px}.brand-mark span:nth-child(2),.brand-mark span:nth-child(3){opacity:.52}
 .brand-type strong{font-size:21px;font-weight:800;font-family:Manrope,sans-serif;letter-spacing:-1px;line-height:1.1;display:block}.brand-dot,.footer strong span{color:#3bbb96}
 .brand-type small{font-size:9px;letter-spacing:2px;color:#768c88;font-weight:800}
 .sidebar-section-label{display:flex;justify-content:space-between;margin:0 11px 14px;font-size:9px;letter-spacing:1.65px;color:#8b9797;font-weight:800}.sidebar-section-label span{font-size:9px;letter-spacing:0;color:#a4b0ac}
@@ -71,13 +69,6 @@ input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:6px;
 body { font-size: 16px; line-height: 1.55; }
 .sidebar { width: 296px; min-width: 296px; padding: 30px 22px 24px; }
 .brand { gap: 14px; margin: 1px 6px 49px; align-items: center; }
-.brand-mark {
-  width: 54px; height: 54px; min-width: 54px; border-radius: 17px;
-  display: flex; align-items: center; justify-content: center;
-  transform: rotate(-3deg); color: #d8f1e7;
-  background: #133f38; box-shadow: 0 7px 20px rgba(15,61,51,.13);
-}
-.dog-icon { display: block; width: 39px; height: 39px; transform: rotate(3deg); }
 .brand-type { min-width: 0; }
 .brand-type strong { font-size: 23px; line-height: 1.16; letter-spacing: -.95px; white-space: nowrap; }
 .brand-type small { display: block; font-size: 11px; letter-spacing: 2.05px; line-height: 1.65; white-space: nowrap; }
@@ -152,16 +143,12 @@ body { font-size: 16px; line-height: 1.55; }
 @media (max-width:1040px) and (min-width:731px) {
   .sidebar { width: 254px; min-width: 254px; padding-left: 15px; padding-right: 15px; }
   .brand { gap: 10px; margin-left: 4px; }
-  .brand-mark { width: 46px; height: 46px; min-width: 46px; }
-  .dog-icon { width: 35px; height: 35px; }
   .brand-type strong { font-size: 21px; }
   .brand-type small { font-size: 10px; letter-spacing: 1.55px; }
 }
 @media (max-width:730px) {
   .sidebar { padding: 18px 15px 14px; width: auto; min-width: 0; }
   .brand { margin: 0 0 14px; gap: 12px; }
-  .brand-mark { height: 46px; width: 46px; min-width: 46px; border-radius: 14px; }
-  .dog-icon { height: 34px; width: 34px; }
   .brand-type strong { font-size: 22px; }
   .brand-type small { font-size: 10px; }
   .nav-link { font-size: 13px; padding: 11px 10px; }
@@ -327,16 +314,6 @@ document.addEventListener('DOMContentLoaded',init);
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
       <a class="brand" href="#diagnose" aria-label="Kathy L Strategy Lab home">
-        <div class="brand-mark" aria-hidden="true">
-          <svg class="dog-icon" viewBox="0 0 64 64" focusable="false">
-            <path d="M22 22 17 17c-4-4-9-1-9 5v12c0 6 4 8 10 4" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="m42 22 5-5c4-4 9-1 9 5v12c0 6-4 8-10 4" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20 28c0-10 6-15 12-15s12 5 12 15v11c0 9-6 16-12 16s-12-7-12-16V28Z" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linejoin="round"/>
-            <circle cx="27" cy="33" r="2" fill="currentColor"/><circle cx="37" cy="33" r="2" fill="currentColor"/>
-            <path d="M28.5 41q3.5-2.5 7 0l-3.5 3z" fill="currentColor"/>
-            <path d="M32 44v3m0 0c-1.7 1.8-3.5 2-5 1m5-1c1.7 1.8 3.5 2 5 1" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
-          </svg>
-        </div>
         <div class="brand-type"><strong>KATHY L</strong><small>STRATEGY LAB</small></div>
       </a>
       <div class="sidebar-section-label">WORKSPACE <span>01 / 04</span></div>
