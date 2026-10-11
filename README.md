@@ -85,17 +85,3 @@ Official docs: https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy
 **Opportunity:** `20 × (0.35 × impact + 0.30 × ease + 0.20 × sector_fit + 0.15 × readiness_fit)`; all component ratings use a 1–5 scale. Scenario impacts, ease scores and readiness thresholds are demonstrative assumptions.
 
 **ROI:** Annual hours released = affected staff × hours saved/user/week × working weeks × adoption. Annual gross capacity value = hours released × loaded hourly cost. Annual net value = gross capacity value − recurring cost. First-year net value = annual net − initial cost. Simple payback applies only if annual net is positive. Inputs are **not** client observations.
-
-## 60-second interview walkthrough
-
-- **The problem:** Businesses hear many AI use case pitches but need a transparent way to compare feasibility and business value.
-- **The approach:** Define a readiness baseline, create an auditable opportunity-scoring model, and connect a pilot to explicit financial assumptions.
-- **The demo:** Lower the data-governance score; observe recommendations change. Next, alter adoption and cost assumptions in the ROI simulator and inspect the resulting payback period.
-- **The limitation:** Self-assessments need validation through interviews, process data, governance review, and a controlled pilot. The version-one report is rules-based rather than LLM-generated.
-
-## Safe future extensions
-
-- Connect a hosted language model for contextual, citation-backed narrative recommendations.
-- Add a small dataset of synthetic company process metrics for more specific industry analysis.
-- Implement PDF reports, a controlled user feedback loop, and stronger input validation.
-- Add empirical calibration of the prioritization model based on observed pilot outcomes.
