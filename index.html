@@ -183,6 +183,21 @@ body { font-size: 16px; line-height: 1.55; }
   .matrix-case-key { grid-template-columns: 1fr; }
 }
 
+
+/* EN / 中文: compact language control */
+.lang-switch{display:inline-flex;align-items:center;border:1px solid #d5e5db;background:#eef5f0;border-radius:11px;padding:4px;gap:3px;flex-shrink:0}
+.lang-btn{font-family:inherit;font-size:13px;font-weight:750;color:#57776d;border:0;padding:7px 13px;border-radius:8px;line-height:1.1;background:transparent;transition:background .15s,color .15s}
+.lang-btn.active{background:#174b3e;color:white;box-shadow:0 2px 6px rgba(17,59,43,.15)}
+.lang-btn:not(.active):hover{background:#dcebe2;color:#174b3e}
+html[lang="zh-CN"] body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC","DM Sans",sans-serif}
+html[lang="zh-CN"] .eyebrow,html[lang="zh-CN"] .hero-kicker,html[lang="zh-CN"] .section-index,html[lang="zh-CN"] .section-corner{letter-spacing:.6px}
+html[lang="zh-CN"] .hero h1{line-height:1.34;letter-spacing:-1.5px}
+html[lang="zh-CN"] .metric-value strong.metric-text{font-size:clamp(19px,1.9vw,25px)}
+html[lang="zh-CN"] .opportunity-card h3{font-size:18px}
+html[lang="zh-CN"] .report-sheet{line-height:1.75}
+@media (max-width:730px){.lang-switch{padding:2px}.lang-btn{font-size:12px;padding:6px 9px}.topbar-actions{gap:7px}.demo-pill{font-size:9px;padding:6px 9px}}
+@media (max-width:420px){.topbar-actions{gap:5px}.demo-pill{font-size:8px;letter-spacing:0}.lang-btn{font-size:11px;padding:6px 8px}}
+@media print{.lang-switch{display:none}}
 </style>
 <script>
 /* AI Transformation Navigator — standalone GitHub Pages edition.
@@ -306,6 +321,374 @@ function markdownReport(){const {score,cases,r}=modelData(),top=cases.slice(0,3)
 ];return report.join('\n')+'\n'}
 function downloadMarkdown(){const blob=new Blob([markdownReport()],{type:'text/markdown;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);const short=state.company.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,35)||'client';a.download=`${short}-ai-strategy-brief.md`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 function init(){const year=new Date().getFullYear();$('today').textContent=year;$('copyright-year').textContent=year;setupControls();$('affected').max=state.employees;$('adoption').style.setProperty('--fill','60%');render();const hash=location.hash.replace('#','');activate(['diagnose','prioritize','roi','report'].includes(hash)?hash:'diagnose',false)}
+
+/* Bilingual interface: English and 简体中文, with local-only persistence. */
+const zhText = {
+  "WORKSPACE": "工作台",
+  "Overview & diagnosis": "概览与诊断",
+  "Opportunity mapping": "AI 场景评估",
+  "Value simulation": "投资回报测算",
+  "Strategy brief": "策略报告",
+  "CLIENT WORKSPACE": "企业信息",
+  "DEMO": "演示",
+  "Company name": "企业名称",
+  "Industry": "所属行业",
+  "Manufacturing": "制造业",
+  "Financial services": "金融服务",
+  "Professional services": "专业服务",
+  "Retail & e-commerce": "零售与电商",
+  "Energy & infrastructure": "能源与基础设施",
+  "Total employees": "员工总数",
+  "Live scenario": "实时测算",
+  "Independent learning project. All inputs, ratings and projections are illustrative.": "独立学习项目，所有评分和测算均为演示性假设。",
+  "Strategy Lab": "策略实验室",
+  "Overview": "概览",
+  "Opportunities": "应用场景",
+  "DEMONSTRATION MODEL": "演示模型",
+  "ENTERPRISE AI / DECISION INTELLIGENCE": "企业 AI / 智能决策",
+  "THE STRATEGY SERIES": "AI 转型策略系列",
+  "From AI ambition": "从 AI 愿景",
+  "to": "走向",
+  "business value.": "商业价值。",
+  "A decision-support workspace to assess readiness, prioritize AI opportunities and build a defensible business case.": "评估企业 AI 准备度，识别高价值应用场景，并构建透明、可解释的投资回报测算。",
+  "01 / Diagnose": "01 / 诊断",
+  "02 / Prioritize": "02 / 排序",
+  "03 / Model": "03 / 测算",
+  "04 / Deliver": "04 / 交付",
+  "STRATEGY": "策略",
+  "ALIGNMENT → IMPACT": "战略契合 → 业务价值",
+  "AI readiness": "AI 准备度",
+  "Weighted diagnostic score": "五维加权诊断得分",
+  "Maturity stage": "成熟度阶段",
+  "Developing": "发展阶段",
+  "Opportunities to strengthen": "仍有能力提升空间",
+  "AI use cases": "AI 应用场景",
+  "scenarios": "个场景",
+  "Ranked across your industry": "按行业适配程度排序",
+  "Top opportunity score": "最高优先级得分",
+  "Research & intelligence copilot": "研究与情报智能助手",
+  "PHASE 01": "阶段 01",
+  "/ BASELINE ASSESSMENT": "/ 基线诊断",
+  "Where do you stand today?": "企业当前的 AI 基础如何？",
+  "Adjust five maturity dimensions to test how the transformation profile changes.": "调整五个成熟度维度，观察企业 AI 能力画像如何变化。",
+  "Readiness assessment": "AI 准备度评估",
+  "Self-assessed maturity · 1 = low, 5 = high": "自主评分：1 = 较低，5 = 较高",
+  "Score = Σ [(rating − 1) ÷ 4 × dimension weight × 100]": "得分 = Σ［（评分 − 1）÷ 4 × 维度权重 × 100］",
+  "Capability profile": "能力雷达图",
+  "Five dimensions / normalized to 100": "五大能力维度 / 标准化得分",
+  "Initial consulting hypothesis": "初步咨询判断",
+  "Prioritize foundational capabilities before deploying higher-risk AI systems.": "优先补齐基础能力，再部署风险更高的 AI 应用。",
+  "PHASE 02": "阶段 02",
+  "/ OPPORTUNITY DESIGN": "/ 场景优先级",
+  "Invest where impact meets feasibility.": "优先投资高价值、可落地的场景。",
+  "Six potential AI applications, ranked with a transparent and adjustable industry profile.": "基于公开的评分规则和行业适配度，对六类 AI 应用进行排序。",
+  "Opportunity landscape": "AI 应用机会矩阵",
+  "Higher and further right indicates a stronger near-term candidate": "越靠右上角，越适合作为近期试点",
+  "Top-ranked use case": "优先推荐场景",
+  "Other opportunities": "其他候选场景",
+  "How priorities are scored": "优先级如何计算",
+  "Heuristic model · no trained dataset": "规则评分模型 · 非机器学习预测",
+  "Consulting perspective": "咨询视角",
+  "These are starting hypotheses. Validate each scenario using process data, stakeholder interviews and a scoped pilot.": "排序结果属于初步假设，需要通过业务流程数据、利益相关者访谈和小规模试点验证。",
+  "Governance & pilot success metrics": "治理要求与试点成效指标",
+  "Recommended controls for the leading opportunities": "重点 AI 场景的风险控制建议",
+  "PHASE 03": "阶段 03",
+  "/ BUSINESS CASE": "/ 商业论证",
+  "Give the strategy a financial case.": "用财务模型验证 AI 投资价值。",
+  "Explore assumptions and estimate the value of employee capacity released.": "调整关键假设，测算 AI 释放的人力工时价值。",
+  "Model assumptions": "模型假设",
+  "All amounts in USD · changes update instantly": "金额单位：美元 · 修改后实时更新",
+  "Use case to model": "测算应用场景",
+  "Employees in scope": "覆盖员工人数",
+  "Hours saved / week": "每周节约工时",
+  "Loaded hourly cost ($)": "综合小时人工成本（美元）",
+  "Working weeks / year": "每年工作周数",
+  "One-time cost ($)": "一次性投入（美元）",
+  "Annual recurring cost ($)": "年度持续成本（美元）",
+  "Effective adoption": "有效使用率",
+  "Value assumes released employee time can be productively redeployed.": "测算假设节约的时间可以重新投入有价值的工作。",
+  "Financial outlook": "财务测算结果",
+  "Illustrative annualized value scenario": "示例性年度价值情景",
+  "Annual hours released": "年度释放工时",
+  "Gross capacity value / year": "年度工时价值",
+  "First-year net value": "首年净价值",
+  "Simple payback": "简单回收期",
+  "Not reached": "无法回收",
+  "Three-year value trajectory": "三年累计价值趋势",
+  "UNDISCOUNTED · USD": "未折现 · 美元",
+  "First-year ROI on initial cost": "首年初始投资回报率",
+  "Interpretation matters.": "结果解读提示。",
+  "Capacity value is not booked cost savings. Realized financial benefits depend on how released time is redeployed, actual uptake and measured operational results.": "释放的工时价值不等于实际节省的现金成本。实际效益取决于岗位安排、采用率以及真实业务成果。",
+  "View the complete model formulas": "查看完整计算公式",
+  "Annual hours = employees × hours saved per week × working weeks × adoption rate.": "年度释放工时 = 覆盖人数 × 每周节约工时 × 工作周数 × 有效使用率。",
+  "Annual capacity value = annual hours × hourly cost.": "年度工时价值 = 年度释放工时 × 小时人工成本。",
+  "Annual net value = annual capacity value − annual recurring cost.": "年度净价值 = 年度工时价值 − 持续运营成本。",
+  "First-year net value = annual net value − one-time cost.": "首年净价值 = 年度净价值 − 一次性投入。",
+  "First-year ROI = first-year net value ÷ one-time cost. Simple payback = one-time cost ÷ positive annual net value × 12 months.": "首年 ROI = 首年净价值 ÷ 一次性投入。简单回收期 = 一次性投入 ÷ 正的年度净价值 × 12 个月。",
+  "PHASE 04": "阶段 04",
+  "/ EXECUTIVE DELIVERY": "/ 策略交付",
+  "Turn findings into a recommendation.": "把分析结果转化为可执行建议。",
+  "A concise decision brief that updates with the current assessment and scenario assumptions.": "生成随当前企业信息、准备度及 ROI 假设同步更新的策略简报。",
+  "↓ Download strategy brief (.md)": "↓ 下载策略简报（.md）",
+  "↗ Print / save PDF": "↗ 打印 / 保存 PDF",
+  "· Independent strategy prototype": "· 独立策略研究原型",
+  "Not affiliated with Deloitte or any consulting firm. No external API calls.": "与德勤及其他咨询公司无关联。网站不调用外部 API。",
+  "Data & governance": "数据与治理",
+  "Technology infrastructure": "技术基础设施",
+  "Process readiness": "流程准备度",
+  "People & skills": "人才与技能",
+  "Responsible AI & risk": "负责任 AI 与风险",
+  "Data governance": "数据治理",
+  "Technology": "技术基础",
+  "Processes": "业务流程",
+  "Responsible AI": "负责任 AI",
+  "Foundational": "基础建设阶段",
+  "Scaling-ready": "具备扩展条件",
+  "Build essential foundations": "优先建设关键基础能力",
+  "Focus on operational readiness": "重点提升业务落地准备度",
+  "Candidate for selective scaling": "可以考虑选择性规模推广",
+  "Enterprise knowledge assistant": "企业知识库助手",
+  "Document processing automation": "文档处理自动化",
+  "Predictive maintenance analytics": "预测性设备维护",
+  "Customer service triage": "客户服务智能分流",
+  "Demand forecasting support": "需求预测辅助",
+  "Knowledge management": "知识管理",
+  "Operations": "运营管理",
+  "Strategy": "战略研究",
+  "Industrial operations": "工业运营",
+  "Customer experience": "客户体验",
+  "Planning": "经营规划",
+  "Find answers in approved internal documents with traceable sources.": "基于授权内部文档检索答案，并提供可核查的来源。",
+  "Extract and validate invoice, form or operational document data.": "自动提取并核验发票、表单和运营文档数据。",
+  "Summarize public market, policy and competitor research for analyst review.": "汇总公开市场、政策及竞争对手信息，供分析师复核。",
+  "Forecast equipment downtime using verified maintenance and sensor data.": "利用经过验证的维护记录和传感器数据预测停机风险。",
+  "Route customer inquiries and draft replies for staff approval.": "分类客户咨询并起草回复，交由员工审核。",
+  "Forecast demand and compare operational planning scenarios.": "预测需求变化并比较不同运营规划情景。",
+  "Medium": "中等",
+  "High": "较高",
+  "Apply access controls, source citations and human review for critical answers.": "实施访问权限管理、来源引用及关键答复人工复核。",
+  "Set confidence thresholds, exception queues and audit logs.": "设置信心度阈值、异常处理队列及审计日志。",
+  "Display citations and require analysts to verify material claims.": "展示引用来源，并由分析师核验重要结论。",
+  "Validate sensor coverage and backtest models before operational use.": "上线前验证传感器覆盖范围并进行回测。",
+  "Keep humans involved in complaints and sensitive customer interactions.": "投诉和敏感客户沟通必须保留人工介入。",
+  "Backtest accuracy and allow planners to override recommendations.": "回测预测准确度，并允许规划人员人工覆盖建议。",
+  "Time to locate a verified answer": "找到可信答案所需时间",
+  "Minutes per document processed": "每份文档处理时间",
+  "Analyst hours per research brief": "每份研究简报的人力工时",
+  "Unplanned downtime hours": "非计划停机工时",
+  "First-response time": "首次响应时间",
+  "Forecast error / MAPE": "预测误差 / MAPE",
+  "Business impact": "业务价值",
+  "Implementation ease": "实施便利度",
+  "Sector relevance": "行业适配度",
+  "Readiness fit": "准备度匹配",
+  "Sector fit": "行业适配度",
+  "IMPLEMENTATION EASE →": "实施便利度 →",
+  "BUSINESS IMPACT →": "业务价值 →",
+  "OPPORTUNITY": "应用场景",
+  "RISK": "风险",
+  "KEY GUARDRAIL": "关键控制措施",
+  "PILOT KPI": "试点 KPI",
+  "Initial": "初始",
+  "Year 1": "第 1 年",
+  "Year 2": "第 2 年",
+  "Year 3": "第 3 年"
+};
+let currentLang = 'en';
+const staticStrings = new Map();
+const translate = (s) => currentLang === 'zh' ? (zhText[s] || s) : s;
+const cName = c => translate(c.name);
+const cRisk = c => translate(c.risk);
+const safeStore = {
+ get() { try {return localStorage.getItem('kathy-l-language')} catch (_) {return null} },
+ set(v) { try {localStorage.setItem('kathy-l-language', v)} catch (_) {} }
+};
+function captureStaticText() {
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node=walker.nextNode())) {
+    if (!node.textContent.trim() || ['SCRIPT','STYLE'].includes(node.parentElement?.tagName)) continue;
+    staticStrings.set(node,node.textContent);
+  }
+}
+function applyStaticLanguage(){
+  for (const [node, original] of staticStrings) {
+    if (!node.isConnected) continue;
+    const key=original.trim();
+    if (!key || !zhText[key]) {node.textContent=original;continue}
+    node.textContent=currentLang==='zh'?original.replace(key,zhText[key]):original;
+  }
+  document.querySelectorAll('#sector option').forEach(option=>{
+    option.textContent=translate(option.value);
+  });
+  document.documentElement.lang=currentLang==='zh'?'zh-CN':'en';
+  document.title=currentLang==='zh'?'Kathy L | 企业 AI 转型策略平台':'Kathy L | AI Transformation Navigator';
+  document.querySelectorAll('.lang-btn').forEach(button=>{
+    const active=button.dataset.lang===currentLang;
+    button.classList.toggle('active',active);
+    button.setAttribute('aria-pressed',String(active));
+  });
+  const ariaMap={'radar-chart':['Radar chart of readiness across five capability dimensions','五维 AI 准备度雷达图'],'matrix-chart':['Scatterplot of AI use cases by implementation ease and business impact','AI 场景业务价值与实施便利度矩阵'],'roi-chart':['Line chart of cumulative illustrative value over three years','三年累计价值趋势图'],'report-content':['Executive strategy brief','企业 AI 转型策略简报']};
+  Object.entries(ariaMap).forEach(([id,labels])=>$(id).setAttribute('aria-label',labels[currentLang==='zh'?1:0]));
+}
+function localizeContent(root){
+  if(currentLang!=='zh'||!root)return;
+  const walk=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  let node;
+  while((node=walk.nextNode())){
+    const original=node.textContent,txt=original.trim();
+    let localized=zhText[txt];
+    if (!localized && /^\d+% assessment weight$/.test(txt))localized=txt.replace('assessment weight','评估权重');
+    if (!localized && /^\/?\s*100 PRIORITY$/.test(txt))localized='/ 100 优先级';
+    if (!localized && /^(Medium|High) risk · KPI: /.test(txt)) {
+      const matched=txt.match(/^(Medium|High) risk · KPI: (.*)$/);
+      localized=matched?`${translate(matched[1])}风险 · KPI：${translate(matched[2])}`:null;
+    }
+    if(localized)node.textContent=original.replace(txt,localized);
+  }
+}
+const originalDimensionMarkup=dimensionMarkup;
+dimensionMarkup=function(){
+  if(currentLang==='en')return originalDimensionMarkup();
+  return DIMENSIONS.map(d=>`<div class="readiness-item"><div class="readiness-label"><strong>${esc(translate(d.short))}</strong><span>${state.ratings[d.key]} / 5</span></div><div class="readiness-input"><input type="range" min="1" max="5" step="1" value="${state.ratings[d.key]}" data-dimension="${esc(d.key)}" aria-label="${esc(translate(d.short))}成熟度评分" style="--fill:${(state.ratings[d.key]-1)*25}%" /><output>${state.ratings[d.key]}</output></div><div class="readiness-weight">评估权重 ${Math.round(d.weight*100)}%</div></div>`).join('');
+};
+const originalActivate=activate;
+activate=function(name,scroll){
+  originalActivate(name,scroll);
+  if(currentLang==='zh')$('breadcrumb-current').textContent=({diagnose:'概览',prioritize:'应用场景',roi:'价值测算',report:'策略报告'})[name];
+};
+const originalRenderRadar=renderRadar;
+renderRadar=function(){originalRenderRadar();localizeContent($('radar-chart'))};
+const originalRenderMatrix=renderMatrix;
+renderMatrix=function(cases){originalRenderMatrix(cases);localizeContent($('matrix-chart'));localizeContent($('matrix-case-key'));
+  if(currentLang==='zh'){
+    $('matrix-chart').querySelectorAll('title').forEach(el=>{
+      let v=el.textContent;
+      for(const c of USE_CASES)v=v.replace(c.name,translate(c.name));
+      v=v.replace('priority ','优先级 ').replace('impact ','价值 ').replace('ease ','实施便利度 ');
+      el.textContent=v;
+    });
+  }
+};
+const originalRenderOpportunities=renderOpportunities;
+renderOpportunities=function(cases){
+  originalRenderOpportunities(cases);
+  ['top-opportunities','weight-list','governance-list'].forEach(id=>localizeContent($(id)));
+  if(currentLang==='zh')$('top-opportunities').querySelectorAll('.opportunity-rank').forEach((el,i)=>{el.textContent=`0${i+1} / ${translate(cases[i].category)}`});
+  const options=$('usecase').querySelectorAll('option');
+  options.forEach(o=>o.textContent=translate(o.value));
+};
+const originalRenderRoiChart=renderRoiChart;
+renderRoiChart=function(vals){
+  originalRenderRoiChart(vals);
+  localizeContent($('roi-chart'));
+  if(currentLang==='zh')$('roi-chart').querySelectorAll('title').forEach(el=>{
+    el.textContent=el.textContent.replace(/Initial|Year 1|Year 2|Year 3/g,m=>translate(m));
+  });
+};
+const originalRenderRoi=renderRoi;
+renderRoi=function(){originalRenderRoi();if(currentLang==='zh'){
+  const p=roiModel().payback;
+  $('result-payback').textContent=p===null?'无法回收':p.toFixed(1)+' 个月';
+}};
+const originalRender=render;
+render=function(){originalRender();
+  if(currentLang==='zh'){
+    const score=scoreReadiness();
+    $('metric-stage').textContent=translate(band(score));
+    $('metric-stage-note').textContent=translate(score<35?'Build essential foundations':score<65?'Focus on operational readiness':'Candidate for selective scaling');
+    $('metric-priority-name').textContent=translate(rankCases(score)[0].name);
+    const weak=[...DIMENSIONS].sort((a,b)=>state.ratings[a.key]-state.ratings[b.key]).slice(0,2).map(d=>translate(d.short));
+    $('weakness-copy').textContent=`建议优先提升「${weak[0]}」和「${weak[1]}」，再考虑推广风险较高的 AI 场景。请通过实际访谈和数据核实自主评分。`;
+  }
+};
+const originalRenderReport=renderReport;
+renderReport=function(){
+  if(currentLang!=='zh'){originalRenderReport();return}
+  const {score,cases,r}=modelData(),top=cases.slice(0,3),date=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+  const payback=r.payback===null?'无法回收':r.payback.toFixed(1)+' 个月';
+  $('report-content').innerHTML=`<div class="report-head"><div><div class="report-overline">KATHY L / 企业策略简报</div><h3>企业 AI 转型策略</h3><p>AI 应用机会评估与优先试点建议</p></div><div class="report-date">编制日期<br>${esc(date)}<br>演示 / 内部参考</div></div>
+  <div class="report-meta"><div><span>企业名称</span><strong>${esc(state.company)}</strong></div><div><span>所属行业</span><strong>${esc(translate(state.sector))}</strong></div><div><span>员工人数</span><strong>${num(state.employees)}</strong></div></div>
+  <div class="report-section"><h4><em>01</em> 核心结论</h4><p>根据五个自主评估维度，该企业的 AI 准备度评分为 <strong>${score.toFixed(1)}/100（${translate(band(score))}）</strong>。当前最值得验证的试点方向是 <strong>${esc(cName(top[0]))}</strong>，规则计算优先级为 ${top[0].priority.toFixed(1)}/100。建议先开展小范围需求调研，确认技术可行性、业务负责人及治理要求，再决定是否扩大部署范围。</p></div>
+  <div class="report-section"><h4><em>02</em> 优先推荐的三个 AI 场景</h4><div class="report-points">${top.map((c,i)=>`<div class="report-point"><span>0${i+1} / 优先级 ${c.priority.toFixed(1)}</span><strong>${esc(cName(c))}</strong><p>试点 KPI：${esc(translate(c.kpi))}<br>风险等级：${esc(cRisk(c))}</p></div>`).join('')}</div><p>优先级规则：业务价值 35%、实施便利度 30%、行业适配度 20%、准备度匹配 15%。各场景输入评分均为演示假设。</p></div>
+  <div class="report-section"><h4><em>03</em> 参考财务测算（美元）</h4><table class="report-table"><tbody>
+    <tr><td>测算场景</td><td>${esc(translate(state.selectedCase||top[0].name))}</td></tr>
+    <tr><td>覆盖人数 / 有效使用率</td><td>${num(state.roi.affected)} / ${state.roi.adoption}%</td></tr>
+    <tr><td>每年释放工时</td><td>${num(r.hours)} 小时</td></tr>
+    <tr><td>年度工时价值</td><td>${usd(r.gross)}</td></tr>
+    <tr><td>一次性投入 / 年度持续成本</td><td>${usd(state.roi.upfront)} / ${usd(state.roi.recurring)}</td></tr>
+    <tr><td>首年净价值</td><td>${usd(r.firstYear)}</td></tr>
+    <tr><td>首年 ROI / 简单回收期</td><td>${r.roi===null?'不适用':pct(r.roi)} / ${payback}</td></tr>
+  </tbody></table></div>
+  <div class="report-section"><h4><em>04</em> 建议的 90 天试点路线</h4><div class="roadmap"><div><span>第 01—30 天</span><strong>调研与准备</strong><p>梳理业务流程，核实数据使用权限，建立基线 KPI，并收集一线用户需求。</p></div><div><span>第 31—60 天</span><strong>小范围验证</strong><p>开发聚焦单一流程的原型，测试质量、异常处理、人工审核和实际采用情况。</p></div><div><span>第 61—90 天</span><strong>评估与决策</strong><p>评估安全治理措施，量化真实收益，根据既定标准决定扩大试点或停止。</p></div></div></div>
+  <p class="report-disclaimer">方法说明：本报告使用虚构业务场景和自主评估的启发式评分，不构成经验证的行业基准。释放工时的经济价值并不等于实际现金节约。所有计算在浏览器本地完成，无外部 AI API 调用。本项目为独立作品集，与德勤或其他咨询机构无关联。</p>`;
+};
+const originalMarkdownReport=markdownReport;
+markdownReport=function(){
+  if(currentLang!=='zh')return originalMarkdownReport();
+  const {score,cases,r}=modelData(),top=cases.slice(0,3),clean=s=>String(s).replace(/[\r\n]/g,' ').replace(/([*_`\[\]#])/g,'\\$1');
+  const payback=r.payback===null?'无法回收':r.payback.toFixed(1)+' 个月';
+  return [
+    '# KATHY L · 企业 AI 转型策略简报','',
+    `**企业：** ${clean(state.company)}`,
+    `**行业：** ${translate(state.sector)}`,
+    `**员工人数：** ${num(state.employees)}`,
+    `**AI 准备度：** ${score.toFixed(1)}/100（${translate(band(score))}）`,'',
+    '## 1. AI 准备度评估','',
+    ...DIMENSIONS.map(d=>`- ${translate(d.key)}：${state.ratings[d.key]}/5（权重 ${d.weight*100}%）`),'',
+    '公式：准备度 = Σ［（评分 − 1）÷ 4 × 权重 × 100］。自主评估结果仅供演示，并非经过验证的行业基准。','',
+    '## 2. AI 场景优先级','',
+    ...top.flatMap((c,i)=>[`${i+1}. **${translate(c.name)}**：优先级 ${c.priority.toFixed(1)}/100，风险 ${translate(c.risk)}。`,`   - 应用范围：${translate(c.description)}`,`   - 试点 KPI：${translate(c.kpi)}`,`   - 治理建议：${translate(c.guardrail)}`]),'',
+    '优先级权重：业务价值 35%、实施便利度 30%、行业适配度 20%、准备度匹配 15%。评分均为演示性假设。','',
+    '## 3. 财务情景测算（美元）','','| 指标 | 数值 |','|---|---:|',
+    `| 测算场景 | ${translate(state.selectedCase||top[0].name)} |`,
+    `| 覆盖人数 | ${num(state.roi.affected)} |`,
+    `| 每周节约工时 | ${state.roi.hours} |`,
+    `| 有效使用率 | ${state.roi.adoption}% |`,
+    `| 小时人工成本 | ${usd(state.roi.cost)} |`,
+    `| 每年工作周数 | ${state.roi.weeks} |`,
+    `| 一次性投入 | ${usd(state.roi.upfront)} |`,
+    `| 年度持续成本 | ${usd(state.roi.recurring)} |`,
+    `| 年度释放工时 | ${num(r.hours)} |`,
+    `| 年度工时价值 | ${usd(r.gross)} |`,
+    `| 首年净价值 | ${usd(r.firstYear)} |`,
+    `| 首年 ROI | ${r.roi===null?'不适用':pct(r.roi)} |`,
+    `| 简单回收期 | ${payback} |`,'',
+    '**解读提醒：** 工时价值不等于账面现金节省。实际收益受落地成本、用户采用率和释放时间的再利用方式影响。','',
+    '## 4. 建议的 90 天试点计划','',
+    '- **第 1—30 天：调研。** 梳理流程、访谈相关人员、明确基线 KPI 和数据治理要求。',
+    '- **第 31—60 天：验证。** 构建小型原型，测试输出质量、人工复核和用户采用情况。',
+    '- **第 61—90 天：决策。** 衡量真实绩效与经济价值，根据事先约定的条件决定扩展或终止。','',
+    '## 免责声明','',
+    '本项目为独立教学与求职作品集。未与德勤或任何咨询机构合作。场景与评分为虚构演示。网站计算在用户浏览器本地完成，不调用大语言模型 API。',''
+  ].join('\n');
+};
+const originalInit = init;
+init=function(){
+  document.querySelectorAll('#sector option').forEach(o=>o.value=o.textContent);
+  captureStaticText();
+  originalInit();
+  document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>changeLang(btn.dataset.lang)));
+  changeLang(safeStore.get()==='zh'?'zh':'en');
+};
+function changeLang(next){
+  if(next!=='zh'&&next!=='en')return;
+  currentLang=next;
+  safeStore.set(next);
+  applyStaticLanguage();
+  // Rebuild the slider labels in the chosen language; register new slider listeners.
+  const inputs=$('dimension-controls');
+  inputs.innerHTML=dimensionMarkup();
+  inputs.querySelectorAll('input[data-dimension]').forEach(input=>input.addEventListener('input',()=>{
+    state.ratings[input.dataset.dimension]=Number(input.value);
+    input.style.setProperty('--fill',`${(Number(input.value)-1)*25}%`);
+    input.closest('.readiness-item').querySelector('output').textContent=input.value;
+    input.closest('.readiness-item').querySelector('.readiness-label span').textContent=`${input.value} / 5`;
+    render();
+  }));
+  render();activate(state.view,false);
+}
+
 document.addEventListener('DOMContentLoaded',init);
 
 </script>
@@ -347,7 +730,7 @@ document.addEventListener('DOMContentLoaded',init);
     <div class="main-shell">
       <header class="topbar">
         <div class="breadcrumbs"><span>Strategy Lab</span><span class="crumb-divider">/</span><span id="breadcrumb-current">Overview</span></div>
-        <div class="topbar-actions"><span class="demo-pill"><span class="demo-spark">✦</span> DEMONSTRATION MODEL</span><span class="topbar-date" id="today">2026</span></div>
+        <div class="topbar-actions"><div class="lang-switch" role="group" aria-label="Language / 语言"><button type="button" class="lang-btn active" data-lang="en" aria-pressed="true">EN</button><button type="button" class="lang-btn" data-lang="zh" aria-pressed="false">中文</button></div><span class="demo-pill"><span class="demo-spark">✦</span> DEMONSTRATION MODEL</span><span class="topbar-date" id="today">2026</span></div>
       </header>
       <main class="content" id="main-content">
         <div class="eyebrow"><span class="eyebrow-line"></span> ENTERPRISE AI / DECISION INTELLIGENCE</div>
