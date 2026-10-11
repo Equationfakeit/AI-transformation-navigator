@@ -4,17 +4,340 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#f6f8f5" />
+  <meta name="color-scheme" content="light" />
   <meta name="description" content="AI Transformation Navigator — an independent, transparent enterprise AI strategy assessment prototype." />
-  <title>AI Transformation Navigator — Strategy Studio</title>
-  <link rel="stylesheet" href="./styles.css" />
-  <script src="./app.js" defer></script>
+  <title>Kathy L | AI Transformation Navigator</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root {--ink:#182a2d;--slate:#607277;--soft:#87969b;--green:#157966;--darkgreen:#123f39;--sea:#e1f2eb;--bg:#f6f8f6;--line:#e3e9e5;--cream:#e9eee9;--white:#fff;--amber:#c98451;--sidebar:#fefefe;--shadow:0 12px 40px rgba(17,48,40,.035)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #6cbfaa;outline-offset:2px}
+button:disabled{cursor:not-allowed;opacity:.6}
+.app-shell{display:flex;min-height:100vh}
+.sidebar{position:sticky;top:0;width:260px;min-width:260px;height:100vh;background:var(--sidebar);border-right:1px solid var(--line);padding:34px 19px 25px;display:flex;flex-direction:column;z-index:10;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;margin:0 12px 54px}
+.brand-mark{background:var(--darkgreen);height:40px;width:40px;border-radius:12px;display:grid;grid-template-columns:repeat(2,7px);grid-template-rows:repeat(2,7px);gap:4px;align-content:center;justify-content:center;transform:rotate(-5deg)}
+.brand-mark span{background:#bce7d9;border-radius:2px}.brand-mark span:nth-child(2),.brand-mark span:nth-child(3){opacity:.52}
+.brand-type strong{font-size:21px;font-weight:800;font-family:Manrope,sans-serif;letter-spacing:-1px;line-height:1.1;display:block}.brand-dot,.footer strong span{color:#3bbb96}
+.brand-type small{font-size:9px;letter-spacing:2px;color:#768c88;font-weight:800}
+.sidebar-section-label{display:flex;justify-content:space-between;margin:0 11px 14px;font-size:9px;letter-spacing:1.65px;color:#8b9797;font-weight:800}.sidebar-section-label span{font-size:9px;letter-spacing:0;color:#a4b0ac}
+.navigation{display:flex;flex-direction:column;gap:5px}
+.nav-link{background:transparent;border:0;width:100%;color:#71817e;display:flex;align-items:center;text-align:left;gap:13px;padding:14px 13px;border-radius:11px;font-weight:600;transition:background .15s,color .15s}
+.nav-link:hover{color:var(--darkgreen);background:#f0f5f1}.nav-link.active{background:#e5f3ec;color:#115d4e;box-shadow:inset 3px 0 #207f69}
+.nav-icon{font-size:20px;width:22px;line-height:20px;text-align:center;font-weight:400}.nav-step{margin-left:auto;opacity:.55;font-size:10px;font-weight:700}
+.case-label{margin-top:54px}
+.client-panel{margin:0 5px 10px;padding:16px 12px 4px;border:1px solid var(--line);border-radius:13px;background:#fcfdfc}
+.field-label,.field-stack label{display:block;font-size:11px;font-weight:700;color:#637775;margin-bottom:8px}
+.client-panel input,.client-panel select,.field-stack input,.field-stack select{width:100%;color:var(--ink);border:1px solid #dce6e1;border-radius:8px;padding:11px 10px;background:#fff;min-width:0;min-height:41px;outline:none;transition:border-color .15s;box-shadow:0 1px 1px #edf2ee}
+.client-panel input:focus,.client-panel select:focus,.field-stack input:focus,.field-stack select:focus{border-color:var(--green)}
+.client-panel input,.client-panel select{margin-bottom:19px;font-size:12px}
+.sidebar-bottom{margin-top:auto;padding:20px 12px 0}.live-status{font-size:11px;font-weight:750;color:#2d6c59;display:flex;align-items:center;gap:7px}.live-dot{width:7px;height:7px;background:#20b581;border-radius:50%;box-shadow:0 0 0 3px #dbf2e8}.status-right{margin-left:auto;color:#9ca9a2;font-weight:600}.sidebar-bottom p{font-size:10.5px;color:#9ca8a4;line-height:1.7;margin:10px 0 0}
+.main-shell{min-width:0;flex:1}
+.topbar{height:74px;border-bottom:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 6.2%;gap:12px}.breadcrumbs{display:flex;gap:13px;align-items:center;color:#83918f;font-size:12px;font-weight:600}.breadcrumbs span:last-child{color:#354d47}.crumb-divider{color:#c7d2ca}.topbar-actions{display:flex;gap:20px;align-items:center}.demo-pill{border-radius:20px;border:1px solid #dcece2;padding:8px 12px;color:#337464;font-weight:800;letter-spacing:1px;font-size:9px}.demo-spark{font-size:13px;color:#c79952}.topbar-date{color:#a1aca8;font-size:11px}
+.content{max-width:1530px;padding:39px 6.2% 25px;margin:auto}
+.eyebrow{font-weight:800;letter-spacing:2.0px;font-size:10px;color:#157d65;display:flex;align-items:center;gap:10px}.eyebrow-line{width:22px;height:2px;background:#24a17f}
+.hero{min-height:285px;margin-top:24px;border-radius:17px;background:linear-gradient(120deg,#163c36 0%,#123b35 55%,#205a4d 100%);display:flex;position:relative;overflow:hidden;justify-content:space-between;isolation:isolate}
+.hero-copy{padding:34px 36px 31px;position:relative;z-index:2;width:74%}.hero-kicker{font-weight:700;font-size:10px;letter-spacing:2px;color:#a9d6c7;margin:0 0 16px}.hero-kicker span{color:#588a7b}
+.hero h1{font-family:Manrope,sans-serif;font-size:clamp(31px,3.35vw,48px);letter-spacing:-2.5px;line-height:1.17;margin:0;color:white;font-weight:650}.hero h1 em{color:#9de0bf;font-style:normal}
+.hero-description{color:#bfd4cf;line-height:1.65;max-width:590px;margin:13px 0 18px;font-size:12.5px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:7px}.hero-tags span{border:1px solid #548277;border-radius:30px;color:#b6d6cd;padding:6px 10px;font-weight:700;font-size:9px;letter-spacing:.45px}
+.hero-visual{position:absolute;right:15px;top:0;height:100%;width:355px;opacity:.83}.visual-orbit{position:absolute;border:1px solid #679a86;border-radius:50%;top:50%;left:52%;transform:translate(-50%,-50%)}.orbit-outer{width:282px;height:282px;opacity:.46}.orbit-inner{width:189px;height:189px;opacity:.65}.visual-center{position:absolute;top:50%;left:52%;transform:translate(-50%,-50%);height:103px;width:103px;background:linear-gradient(145deg,#235f52,#174537);border:1px solid #8ba89a;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#b9e0d0;box-shadow:0 0 40px #1d5549}.visual-center span{font-family:Manrope,sans-serif;font-weight:800;font-size:28px;line-height:1}.visual-center small{font-size:8px;letter-spacing:1.8px;margin-top:6px}.visual-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:#c7e4bd;box-shadow:0 0 0 7px #73ab9233}.dot-a{top:13%;left:49%}.dot-b{top:56%;right:8%}.dot-c{bottom:15%;left:22%}.visual-ray{position:absolute;width:1px;height:130px;background:#60978350;top:23%;left:52%;transform-origin:bottom center}.ray-1{transform:rotate(50deg)}.ray-2{transform:rotate(140deg)}.ray-3{transform:rotate(240deg)}.visual-caption{position:absolute;bottom:18px;right:20px;color:#8eb3a2;font-size:9px;letter-spacing:1.6px}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 53px}.metric-card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 18px 17px;min-width:0;box-shadow:var(--shadow)}.metric-top{display:flex;justify-content:space-between;gap:4px;font-size:11px;font-weight:650;color:#72817b;align-items:center}.metric-symbol{font-size:19px;color:#b2c2b8}.metric-value{display:flex;gap:8px;align-items:baseline;white-space:nowrap;margin-top:16px;min-height:42px}.metric-value strong{font-family:Manrope,sans-serif;letter-spacing:-1.6px;font-weight:750;font-size:32px;line-height:1.2}.metric-value small{font-size:11px;color:#899992;font-weight:600}.metric-value strong.metric-text{font-size:clamp(18px,2vw,27px);letter-spacing:-.9px;white-space:normal}.metric-foot{margin-top:7px;font-size:10px;line-height:1.5;color:#a0aaa5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.metric-feature{background:#e7f4ed;border-color:#d2e9d9}.metric-feature .metric-value strong{color:#0d7159}.metric-feature .metric-symbol{color:#4aa787}
+.view{animation:fadein .24s ease}.view[hidden]{display:none!important}@keyframes fadein{from{opacity:.6;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.section-heading{display:flex;justify-content:space-between;gap:20px;align-items:start;margin-bottom:22px}.section-index{color:#11775e;font-weight:800;font-size:10px;letter-spacing:1.9px}.section-index span{color:#9dad9f;font-weight:700}.section-heading h2{font-family:Manrope,sans-serif;font-size:clamp(23px,2.45vw,32px);letter-spacing:-1.05px;line-height:1.3;margin:10px 0 7px}.section-heading p{color:#82918b;line-height:1.6;margin:0;font-size:12.5px}.section-corner{font-size:11px;letter-spacing:1px;color:#c3cdc5;font-weight:800;margin-top:9px;flex-shrink:0}
+.dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.surface{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow);min-width:0}.surface-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.surface-head h3{font-family:Manrope,sans-serif;font-size:15px;letter-spacing:-.35px;font-weight:750;margin:0}.surface-head p{font-size:11px;color:#a0aba6;line-height:1.6;margin:6px 0 0}.surface-icon{font-size:23px;color:#95b2a8;line-height:1}
+.readiness-controls{display:grid;gap:19px;margin:28px 0 22px}.readiness-label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.readiness-label strong{font-size:12px;font-weight:700}.readiness-label span{font-size:11px;color:#789189;font-weight:800}.readiness-weight{font-size:10px;color:#9caeaa;margin-top:4px}.readiness-input{display:flex;gap:12px;align-items:center}.readiness-input input{flex:1}.readiness-input output{width:37px;text-align:center;background:#eaf5ef;border-radius:8px;padding:7px 0;color:#20715f;font-size:12px;font-weight:800}
+input[type=range]{appearance:none;-webkit-appearance:none;width:100%;height:6px;border-radius:99px;background:linear-gradient(to right,var(--green) 0 var(--fill,50%),#e8ede9 var(--fill,50%) 100%);cursor:pointer}input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--green);box-shadow:0 1px 6px #2d76503b}input[type=range]::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:#fff;border:4px solid var(--green)}
+.formula-note{background:#f4f7f4;border:1px solid #edf1ed;border-radius:8px;padding:12px;color:#8a9991;font-size:10.5px;line-height:1.6;display:flex;align-items:flex-start;gap:10px}.note-dot{background:#dcebe2;color:#578976;width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px;font-weight:700}
+.radar-wrap{height:358px;max-width:510px;margin:2px auto 6px}.radar-wrap svg{display:block;width:100%;height:100%;overflow:visible}.callout{display:flex;gap:13px;border-radius:10px;padding:14px 15px;align-items:flex-start}.callout.light{background:#e9f4ec}.callout-icon{color:#16765a;font-size:19px}.callout strong{font-size:11px;color:#1b5948}.callout p{margin:4px 0 0;font-size:11px;color:#608478;line-height:1.6}
+.opportunity-top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:18px}.opportunity-card{border:1px solid var(--line);background:#fff;border-radius:13px;padding:20px;min-width:0;box-shadow:var(--shadow)}.opportunity-card:nth-child(1){border-color:#b6dbc7;background:#f4faf5}.opportunity-rank{font-size:10px;color:#91a39a;font-weight:800;letter-spacing:1.2px}.opportunity-card h3{font-family:Manrope,sans-serif;font-size:16px;line-height:1.35;min-height:42px;letter-spacing:-.3px;margin:14px 0 9px}.opportunity-card p{color:#86958e;font-size:11px;line-height:1.65;min-height:55px;margin:0}.opportunity-score{display:flex;align-items:baseline;gap:6px;margin-top:15px;color:#19745e}.opportunity-score strong{font-size:28px;letter-spacing:-1px;font-family:Manrope,sans-serif}.opportunity-score small{font-size:10px;color:#96a79b}.priority-progress{height:5px;border-radius:10px;background:#e9f1eb;overflow:hidden;margin:12px 0}.priority-progress span{display:block;height:100%;background:#21866c;border-radius:10px}.opportunity-meta{font-size:10px;color:#899b91;line-height:1.5}
+.matrix-grid{grid-template-columns:1.5fr .9fr;margin-bottom:18px}.matrix-wrap{margin:20px 0 0;height:310px}.matrix-wrap svg{width:100%;height:100%;display:block}.chart-legend{display:flex;gap:20px;font-size:10px;color:#80918a;justify-content:center;flex-wrap:wrap}.matrix-case-key{border-top:1px solid #e9eee9;margin-top:14px;padding-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 10px}.matrix-case-key span{font-size:10px;color:#6c8074;display:flex;align-items:center;gap:8px;line-height:1.35}.matrix-case-key b{background:#e5f2e9;border-radius:50%;width:19px;height:19px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:#17755a;font-size:10px}.legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.mint{background:#1a8067}.navy{background:#8aada2}.weights{margin:24px 0}.weight-item{margin-bottom:20px}.weight-item-head{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:#596e65;margin-bottom:10px}.weight-track{height:7px;border-radius:6px;background:#e7eee8;overflow:hidden}.weight-track span{display:block;height:100%;background:#247d67;border-radius:6px}.weight-item:nth-child(2) .weight-track span{background:#63a691}.weight-item:nth-child(3) .weight-track span{background:#8ebaa7}.weight-item:nth-child(4) .weight-track span{background:#b3d4bd}.method-callout{border-top:1px solid var(--line);padding-top:17px}.method-callout strong{font-size:12px}.method-callout p{font-size:11px;color:#809288;line-height:1.65}
+.governance-surface{margin-top:18px}.governance-list{margin-top:12px}.governance-row{display:grid;grid-template-columns:1fr 80px 1.8fr 1.15fr;gap:14px;padding:15px 0;border-bottom:1px solid #edf0ed;align-items:center}.governance-row:last-child{border-bottom:0}.governance-row.head{padding:10px 0;color:#9bab9f;font-size:9px;font-weight:800;letter-spacing:1px}.governance-row:not(.head){font-size:11px;color:#65796d;line-height:1.5}.governance-row .name{font-size:12px;color:#344b41;font-weight:750}.risk-label{display:inline-block;border-radius:15px;background:#eef3e9;color:#67896b;font-size:10px;padding:5px 9px;font-weight:750;width:max-content}.risk-label.high{background:#fff0df;color:#b17939}
+.roi-grid{grid-template-columns:.85fr 1.15fr}.field-stack{margin-top:22px}.field-stack label{margin-bottom:9px}.field-stack input,.field-stack select{font-size:12px;padding:12px}.field-two{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.range-section{margin-top:25px}.range-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.range-top label{font-size:12px;font-weight:700;color:#687d73}.range-top strong{color:#197660}.range-section input{margin-bottom:18px}.roi-results-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:26px 0 20px}.roi-results-grid>div{background:#f7faf7;border:1px solid #e9efe9;border-radius:10px;padding:17px 15px;min-width:0}.roi-results-grid span{display:block;font-size:10px;color:#85988b;line-height:1.5;margin-bottom:10px}.roi-results-grid strong{font-family:Manrope,sans-serif;font-size:clamp(17px,2vw,27px);font-weight:800;letter-spacing:-1px;overflow-wrap:anywhere}.chart-subheading{display:flex;justify-content:space-between;gap:10px;align-items:center}.chart-subheading strong{font-size:12px}.chart-subheading span{font-size:9px;color:#a1ada4;letter-spacing:1px}.trend-chart{height:245px;margin:10px 0 0}.trend-chart svg{width:100%;height:100%}.result-bottom{display:flex;justify-content:space-between;align-items:center;background:#e9f5ed;border-radius:9px;padding:16px;margin-top:4px;gap:12px}.result-bottom span{color:#517461;font-size:11px;font-weight:700}.result-bottom strong{font-size:22px;color:#12735c;white-space:nowrap}.roi-warning{margin-top:19px;display:flex;gap:14px;padding:18px 21px;border:1px solid #f0e7d4;border-radius:11px;background:#fffbf2;color:#8d7d56}.roi-warning>span{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#f7e5be;color:#a07832;font-weight:900}.roi-warning p{margin:0;font-size:11.5px;line-height:1.65}.roi-warning strong{color:#886637}.details-formula{padding:20px;margin-top:14px;border:1px solid var(--line);border-radius:10px;background:#fff}.details-formula summary{list-style:none;display:flex;justify-content:space-between;font-weight:700;cursor:pointer;font-size:12px}.details-formula summary::-webkit-details-marker{display:none}.details-formula summary span{color:var(--green);font-size:18px}.details-formula[open] summary span{transform:rotate(45deg)}.details-formula>div{border-top:1px solid var(--line);margin-top:15px;padding-top:15px;color:#65766c;font-size:11.5px;line-height:2}
+.report-actions{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}.action-button{border-radius:8px;padding:12px 18px;font-weight:750;font-size:12px;border:1px solid #c5dace}.action-button.primary{background:#14765e;border-color:#14765e;color:#fff}.action-button.primary:hover{background:#0d5d4d}.action-button.secondary{background:#fff;color:#356657}.action-button.secondary:hover{background:#f0f9f3}.report-sheet{background:#fff;border:1px solid var(--line);border-radius:13px;padding:48px min(6%,72px);box-shadow:var(--shadow);max-width:980px;margin:auto}.report-head{border-bottom:2px solid #194d3f;padding-bottom:23px;display:flex;justify-content:space-between;gap:24px}.report-overline{font-size:10px;font-weight:800;color:#168165;letter-spacing:1.8px}.report-head h3{font:800 30px/1.2 Manrope,sans-serif;letter-spacing:-1px;margin:12px 0 7px}.report-head p{font-size:12px;color:#86958b;margin:0}.report-date{font-size:11px;color:#83958c;text-align:right;white-space:nowrap}.report-meta{display:grid;grid-template-columns:1.4fr 1fr .8fr;gap:20px;border-bottom:1px solid var(--line);padding:23px 0}.report-meta span{font-size:10px;color:#87998f;display:block;margin-bottom:8px}.report-meta strong{font-size:12px}.report-section{padding:24px 0;border-bottom:1px solid var(--line)}.report-section:last-child{border-bottom:0;padding-bottom:0}.report-section h4{font:800 15px Manrope,sans-serif;margin:0 0 12px}.report-section h4 em{color:#1b866c;font-style:normal;margin-right:12px}.report-section p{font-size:12px;color:#6d8175;line-height:1.8;margin:7px 0}.report-points{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.report-point{background:#f4f9f5;border-radius:9px;padding:15px}.report-point span{color:#83a196;font-size:10px}.report-point strong{display:block;color:#23604d;font-size:12px;margin:10px 0}.report-point p{font-size:10.5px;line-height:1.5;margin:0}.report-table{width:100%;border-collapse:collapse;font-size:11px}.report-table td{padding:11px 0;border-bottom:1px solid #eff1ed;color:#637a6d}.report-table td:last-child{text-align:right;font-weight:750;color:#294e40}.report-disclaimer{font-size:10px!important;color:#98a59d!important;margin-top:18px!important}.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.roadmap>div{background:#f4f8f5;padding:14px 16px;border-left:3px solid #53a389}.roadmap span{color:#227963;font-size:10px;font-weight:800;letter-spacing:.5px}.roadmap strong{display:block;margin-top:9px;font-size:13px}.roadmap p{font-size:10.5px}
+.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:39px 1px 12px;color:#9aaba0;font-size:10px}.footer strong{font:800 15px Manrope,sans-serif;color:#4e7b6d}
+@media (max-width:1250px){.sidebar{width:235px;min-width:235px}.content{padding-left:4%;padding-right:4%}.topbar{padding:0 4%}.metric-value strong{font-size:26px}.metric-value strong.metric-text{font-size:20px}.hero-visual{right:-35px}.hero-copy{width:79%}}
+@media (max-width:1040px){.dashboard-grid,.matrix-grid,.roi-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.hero-visual{opacity:.45}.hero-copy{width:100%}.report-sheet{padding:32px}.content{padding-left:5%;padding-right:5%}.topbar{padding:0 5%}}
+@media (max-width:730px){.app-shell{display:block}.sidebar{position:relative;height:auto;width:auto;min-width:0;padding:17px 15px 12px;overflow:visible}.brand{margin:0 0 14px}.sidebar>.sidebar-section-label,.sidebar .case-label{display:none}.navigation{flex-direction:row;overflow-x:auto;padding-bottom:5px;gap:4px}.nav-link{white-space:nowrap;width:auto;font-size:11px;padding:11px 12px;gap:7px;flex-shrink:0}.nav-link .nav-step{display:none}.nav-icon{font-size:15px;width:auto}.client-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px 9px;margin:12px 0 0;border:0;padding:0;background:none;align-items:end}.client-panel .field-label{font-size:10px;margin:0;align-self:end}.client-panel input,.client-panel select{font-size:10px;padding:9px 6px;min-height:38px;margin:0;grid-row:2}.sidebar-bottom{display:none}.topbar{height:52px}.topbar-date{display:none}.content{padding:25px 4%}.hero{margin-top:15px;min-height:0}.hero-copy{padding:29px 23px}.hero h1{font-size:36px}.hero-visual{opacity:.19;right:-112px}.hero-description{font-size:11px}.hero-tags span{font-size:8px}.metrics{gap:9px;margin:12px 0 38px}.metric-card{padding:13px}.metric-top{font-size:10px}.metric-value{margin-top:11px;min-height:29px}.metric-value strong{font-size:25px}.metric-value strong.metric-text{font-size:19px}.metric-foot{font-size:9px}.surface{padding:18px}.section-heading h2{font-size:24px}.opportunity-top{grid-template-columns:1fr}.opportunity-card h3,.opportunity-card p{min-height:0}.governance-row{grid-template-columns:1fr 70px;gap:6px}.governance-row.head{display:none}.governance-row>div:nth-child(3),.governance-row>div:nth-child(4){grid-column:1 / -1}.report-sheet{padding:25px 20px}.report-head h3{font-size:24px}.report-date{display:none}.report-meta,.report-points,.roadmap{grid-template-columns:1fr}.report-meta{gap:10px}.footer{padding-top:28px}}
+@media (max-width:430px){.demo-pill{font-size:7px;padding:7px}.topbar{padding:0 4%}.breadcrumbs{gap:7px;font-size:10px}.eyebrow{font-size:8px}.hero h1{font-size:31px}.hero-tags{display:none}.metric-value strong{font-size:23px}.field-two{grid-template-columns:1fr 1fr}.roi-results-grid{gap:6px}.roi-results-grid>div{padding:13px 9px}.roi-results-grid strong{font-size:19px}}
+@media print{body,.main-shell{background:#fff!important}.sidebar,.topbar,.eyebrow,.hero,.metrics,.section-heading,.report-actions,.footer,.roi-warning,.details-formula,.view:not(#view-report){display:none!important}.content{padding:0;max-width:none}.view#view-report{display:block!important}.report-sheet{border:0;padding:0;box-shadow:none;max-width:none}.report-point,.roadmap>div{break-inside:avoid} @page{margin:18mm}}
+
+
+/* === Kathy L Strategy Lab | readability & brand refresh === */
+body { font-size: 16px; line-height: 1.55; }
+.sidebar { width: 296px; min-width: 296px; padding: 30px 22px 24px; }
+.brand { gap: 14px; margin: 1px 6px 49px; align-items: center; }
+.brand-mark {
+  width: 54px; height: 54px; min-width: 54px; border-radius: 17px;
+  display: flex; align-items: center; justify-content: center;
+  transform: rotate(-3deg); color: #d8f1e7;
+  background: #133f38; box-shadow: 0 7px 20px rgba(15,61,51,.13);
+}
+.dog-icon { display: block; width: 39px; height: 39px; transform: rotate(3deg); }
+.brand-type { min-width: 0; }
+.brand-type strong { font-size: 23px; line-height: 1.16; letter-spacing: -.95px; white-space: nowrap; }
+.brand-type small { display: block; font-size: 11px; letter-spacing: 2.05px; line-height: 1.65; white-space: nowrap; }
+.sidebar-section-label, .sidebar-section-label span { font-size: 11px; }
+.nav-link { font-size: 14px; padding: 14px 12px; gap: 11px; }
+.nav-step { font-size: 12px; }
+.case-label { margin-top: 39px; }
+.field-label, .field-stack label { font-size: 13px; }
+.client-panel input, .client-panel select, .field-stack input, .field-stack select { font-size: 14px; min-height: 44px; }
+.live-status { font-size: 12px; }
+.sidebar-bottom p { font-size: 12px; }
+.breadcrumbs, .topbar-date { font-size: 13px; }
+.demo-pill { font-size: 11px; }
+.eyebrow, .hero-kicker { font-size: 12px; }
+.hero { min-height: 314px; }
+.hero-copy { padding: 39px 41px 36px; }
+.hero h1 { font-size: clamp(36px,3.6vw,54px); }
+.hero-description { font-size: 15px; line-height: 1.72; max-width: 650px; }
+.hero-tags span { font-size: 11px; padding: 7px 12px; }
+.metrics { gap: 14px; margin-top: 20px; }
+.metric-card { padding: 20px 17px; }
+.metric-top { font-size: 13px; }
+.metric-value strong { font-size: 34px; }
+.metric-value small { font-size: 13px; }
+.metric-value strong.metric-text { font-size: clamp(20px,2vw,26px); line-height: 1.28; }
+.metric-foot { font-size: 12px; line-height: 1.45; white-space: normal; }
+.section-index, .section-corner { font-size: 12px; }
+.section-heading h2 { font-size: clamp(28px,2.7vw,37px); }
+.section-heading p { font-size: 15px; }
+.surface-head h3 { font-size: 18px; }
+.surface-head p { font-size: 13px; }
+.readiness-label strong { font-size: 14px; }
+.readiness-label span, .readiness-weight, .readiness-input output { font-size: 13px; }
+.formula-note { font-size: 12px; }
+.callout strong, .callout p { font-size: 13px; }
+.opportunity-rank, .opportunity-meta, .opportunity-score small { font-size: 12px; }
+.opportunity-card h3 { font-size: 19px; min-height: 52px; }
+.opportunity-card p { font-size: 13px; min-height: 61px; }
+.opportunity-score strong { font-size: 30px; }
+.chart-legend, .matrix-case-key span, .matrix-case-key b { font-size: 12px; }
+.weight-item-head { font-size: 13px; }
+.method-callout strong { font-size: 14px; }
+.method-callout p { font-size: 13px; }
+.governance-row.head { font-size: 11px; }
+.governance-row:not(.head), .governance-row .name, .risk-label { font-size: 13px; }
+.range-top label { font-size: 14px; }
+.roi-results-grid span, .result-bottom span { font-size: 13px; }
+.roi-results-grid strong { font-size: clamp(20px,2.1vw,29px); }
+.chart-subheading strong { font-size: 14px; }
+.chart-subheading span { font-size: 11px; }
+.roi-warning p, .details-formula summary, .details-formula>div { font-size: 13px; }
+.action-button { font-size: 14px; padding: 13px 19px; }
+.report-overline, .report-date, .report-meta span, .report-point span, .roadmap span { font-size: 12px; }
+.report-head h3 { font-size: 34px; }
+.report-head p, .report-meta strong, .report-section p, .report-point strong { font-size: 14px; }
+.report-section h4 { font-size: 18px; }
+.report-point p, .roadmap p, .report-table { font-size: 13px; }
+.report-disclaimer { font-size: 12px !important; }
+.roadmap strong { font-size: 15px; }
+.footer { font-size: 12px; }
+.footer strong { font-size: 15px; }
+@media (min-width:1041px) and (max-width:1250px) {
+  .sidebar { width: 266px; min-width: 266px; padding-left: 16px; padding-right: 16px; }
+  .brand { gap: 10px; margin-left: 5px; }
+  .brand-type strong { font-size: 21px; }
+  .brand-type small { font-size: 10px; letter-spacing: 1.6px; }
+  .metric-value strong { font-size: 29px; }
+  .metric-value strong.metric-text { font-size: 22px; }
+  .metric-top { font-size: 12px; }
+  .metric-card { padding: 17px 13px; }
+}
+@media (max-width:1040px) and (min-width:731px) {
+  .sidebar { width: 254px; min-width: 254px; padding-left: 15px; padding-right: 15px; }
+  .brand { gap: 10px; margin-left: 4px; }
+  .brand-mark { width: 46px; height: 46px; min-width: 46px; }
+  .dog-icon { width: 35px; height: 35px; }
+  .brand-type strong { font-size: 21px; }
+  .brand-type small { font-size: 10px; letter-spacing: 1.55px; }
+}
+@media (max-width:730px) {
+  .sidebar { padding: 18px 15px 14px; width: auto; min-width: 0; }
+  .brand { margin: 0 0 14px; gap: 12px; }
+  .brand-mark { height: 46px; width: 46px; min-width: 46px; border-radius: 14px; }
+  .dog-icon { height: 34px; width: 34px; }
+  .brand-type strong { font-size: 22px; }
+  .brand-type small { font-size: 10px; }
+  .nav-link { font-size: 13px; padding: 11px 10px; }
+  .client-panel .field-label { font-size: 12px; }
+  .client-panel input, .client-panel select { font-size: 13px; padding: 9px 7px; min-height: 42px; }
+  .hero { min-height: 0; }
+  .hero-copy { padding: 30px 24px; }
+  .hero h1 { font-size: clamp(34px,8vw,42px); }
+  .hero-description { font-size: 14px; }
+  .hero-tags span { font-size: 10px; }
+  .eyebrow, .demo-pill { font-size: 10px; }
+  .metrics { margin-bottom: 38px; }
+  .metric-card { padding: 15px; }
+  .metric-top { font-size: 12px; }
+  .metric-value strong { font-size: 27px; }
+  .metric-value strong.metric-text { font-size: 21px; }
+  .metric-foot { font-size: 11px; }
+  .section-heading h2 { font-size: 29px; }
+  .section-heading p { font-size: 14px; }
+  .surface-head h3 { font-size: 17px; }
+  .opportunity-card h3, .opportunity-card p { min-height: 0; }
+  .report-head h3 { font-size: 28px; }
+  .report-sheet { padding: 27px 20px; }
+}
+@media (max-width:430px) {
+  .breadcrumbs { font-size: 11px; }
+  .hero h1 { font-size: 33px; }
+  .hero-description { font-size: 13px; }
+  .metric-value strong { font-size: 25px; }
+  .metric-value strong.metric-text { font-size: 19px; }
+  .roi-results-grid strong { font-size: 20px; }
+  .matrix-case-key { grid-template-columns: 1fr; }
+}
+
+</style>
+<script>
+/* AI Transformation Navigator — standalone GitHub Pages edition.
+   Transparent educational model translated from reference-python/engine.py.
+   All calculations execute locally; no API requests or model training. */
+'use strict';
+const DIMENSIONS = [
+  {key:'Data & governance',weight:.25,short:'Data & governance',axis:'Data governance'},
+  {key:'Technology infrastructure',weight:.20,short:'Technology infrastructure',axis:'Technology'},
+  {key:'Process readiness',weight:.20,short:'Process readiness',axis:'Processes'},
+  {key:'People & skills',weight:.20,short:'People & skills',axis:'People & skills'},
+  {key:'Responsible AI & risk',weight:.15,short:'Responsible AI & risk',axis:'Responsible AI'}
+];
+const SECTORS = ['Manufacturing','Financial services','Professional services','Retail & e-commerce','Energy & infrastructure'];
+const USE_CASES = [
+  {name:'Enterprise knowledge assistant',category:'Knowledge management',description:'Find answers in approved internal documents with traceable sources.',impact:4.1,ease:4.4,required_readiness:38,sectors:SECTORS,risk:'Medium',guardrail:'Apply access controls, source citations and human review for critical answers.',kpi:'Time to locate a verified answer'},
+  {name:'Document processing automation',category:'Operations',description:'Extract and validate invoice, form or operational document data.',impact:4.3,ease:4.2,required_readiness:45,sectors:['Manufacturing','Financial services','Retail & e-commerce','Energy & infrastructure'],risk:'Medium',guardrail:'Set confidence thresholds, exception queues and audit logs.',kpi:'Minutes per document processed'},
+  {name:'Research & intelligence copilot',category:'Strategy',description:'Summarize public market, policy and competitor research for analyst review.',impact:4.0,ease:4.5,required_readiness:32,sectors:SECTORS,risk:'Medium',guardrail:'Display citations and require analysts to verify material claims.',kpi:'Analyst hours per research brief'},
+  {name:'Predictive maintenance analytics',category:'Industrial operations',description:'Forecast equipment downtime using verified maintenance and sensor data.',impact:4.8,ease:2.8,required_readiness:70,sectors:['Manufacturing','Energy & infrastructure'],risk:'High',guardrail:'Validate sensor coverage and backtest models before operational use.',kpi:'Unplanned downtime hours'},
+  {name:'Customer service triage',category:'Customer experience',description:'Route customer inquiries and draft replies for staff approval.',impact:4.1,ease:3.8,required_readiness:50,sectors:['Financial services','Professional services','Retail & e-commerce'],risk:'Medium',guardrail:'Keep humans involved in complaints and sensitive customer interactions.',kpi:'First-response time'},
+  {name:'Demand forecasting support',category:'Planning',description:'Forecast demand and compare operational planning scenarios.',impact:4.6,ease:3.1,required_readiness:64,sectors:['Manufacturing','Retail & e-commerce','Energy & infrastructure'],risk:'Medium',guardrail:'Backtest accuracy and allow planners to override recommendations.',kpi:'Forecast error / MAPE'}
+];
+const weights = [{name:'Business impact',weight:35},{name:'Implementation ease',weight:30},{name:'Sector relevance',weight:20},{name:'Readiness fit',weight:15}];
+const $=id=>document.getElementById(id);
+const state={company:'Northstar Manufacturing',sector:'Manufacturing',employees:420,ratings:{'Data & governance':2,'Technology infrastructure':3,'Process readiness':3,'People & skills':3,'Responsible AI & risk':3},roi:{affected:40,hours:2,cost:35,weeks:48,upfront:40000,recurring:18000,adoption:60},selectedCase:'',view:'diagnose'};
+const round1=v=>Math.round((v+Number.EPSILON)*10)/10;
+const usd=v=>(v<0?'−':'')+'$'+Math.round(Math.abs(v)).toLocaleString('en-US');
+const num=v=>Math.round(v).toLocaleString('en-US');
+const pct=v=>(Number.isFinite(v)?`${v.toFixed(1)}%`:'N/A');
+const esc=s=>String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const value=(id,defaultVal=0)=>{const n=Number($(id).value);return Number.isFinite(n)?n:defaultVal};
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+function scoreReadiness(){return round1(DIMENSIONS.reduce((sum,d)=>sum+(state.ratings[d.key]-1)/4*100*d.weight,0))}
+function band(score){return score<35?'Foundational':score<65?'Developing':'Scaling-ready'}
+function rankCases(score){return USE_CASES.map(c=>{const sectorFit=c.sectors.includes(state.sector)?5:2;const gap=Math.max(0,c.required_readiness-score);const readinessFit=Math.max(1,5-gap/15);const priority=round1(20*(.35*c.impact+.30*c.ease+.20*sectorFit+.15*readinessFit));return {...c,sectorFit,readinessFit,priority}}).sort((a,b)=>b.priority-a.priority)}
+function roiModel(){const p=state.roi;const hours=p.affected*p.hours*p.weeks*p.adoption/100;const gross=hours*p.cost;const annualNet=gross-p.recurring;const firstYear=annualNet-p.upfront;const roi=p.upfront>0?firstYear/p.upfront*100:null;const payback=annualNet>0?12*p.upfront/annualNet:null;return {hours,gross,annualNet,firstYear,roi,payback,cumulative:[-p.upfront,-p.upfront+annualNet,-p.upfront+2*annualNet,-p.upfront+3*annualNet]}}
+function dimensionMarkup(){return DIMENSIONS.map(d=>`<div class="readiness-item"><div class="readiness-label"><strong>${esc(d.short)}</strong><span>${state.ratings[d.key]} / 5</span></div><div class="readiness-input"><input type="range" min="1" max="5" step="1" value="${state.ratings[d.key]}" data-dimension="${esc(d.key)}" aria-label="${esc(d.short)} maturity" style="--fill:${(state.ratings[d.key]-1)*25}%" /><output>${state.ratings[d.key]}</output></div><div class="readiness-weight">${Math.round(d.weight*100)}% assessment weight</div></div>`).join('')}
+function setupControls(){
+  $('dimension-controls').innerHTML=dimensionMarkup();
+  $('dimension-controls').querySelectorAll('input[data-dimension]').forEach(input=>input.addEventListener('input',()=>{state.ratings[input.dataset.dimension]=Number(input.value);input.style.setProperty('--fill',`${(Number(input.value)-1)*25}%`);input.closest('.readiness-item').querySelector('output').textContent=input.value;input.closest('.readiness-item').querySelector('.readiness-label span').textContent=`${input.value} / 5`;render()}));
+  $('company').addEventListener('input',e=>{state.company=e.target.value.trim().slice(0,70)||'Unnamed organization';renderReport()});
+  $('sector').addEventListener('change',e=>{state.sector=e.target.value;render()});
+  $('employees').addEventListener('change',e=>{const n=clamp(Math.round(Number(e.target.value)||1),1,1000000);e.target.value=n;state.employees=n;state.roi.affected=Math.min(state.roi.affected,n);$('affected').max=n;$('affected').value=state.roi.affected;render()});
+  document.querySelectorAll('.nav-link').forEach(btn=>btn.addEventListener('click',()=>activate(btn.dataset.view,true)));
+  ['affected','hours','cost-hour','weeks','upfront','recurring','adoption'].forEach(id=>$(id).addEventListener('input',()=>{
+    const maps={'affected':'affected','hours':'hours','cost-hour':'cost','weeks':'weeks','upfront':'upfront','recurring':'recurring','adoption':'adoption'};
+    const max={affected:state.employees,hours:168,cost:1000000,weeks:52,upfront:100000000,recurring:100000000,adoption:100}[id];
+    const min=0;state.roi[maps[id]]=clamp(value(id),min,max);
+    if(id==='adoption'){$('adoption-display').textContent=`${state.roi.adoption}%`;$(id).style.setProperty('--fill',`${state.roi.adoption}%`)}
+    renderRoi();renderReport();
+  }));
+  ['affected','hours','cost-hour','weeks','upfront','recurring'].forEach(id=>$(id).addEventListener('change',()=>{const maps={'affected':'affected','hours':'hours','cost-hour':'cost','weeks':'weeks','upfront':'upfront','recurring':'recurring'};$(id).value=state.roi[maps[id]]}));
+  $('usecase').addEventListener('change',e=>{state.selectedCase=e.target.value;renderReport()});
+  $('download-report').addEventListener('click',downloadMarkdown);
+  $('print-report').addEventListener('click',()=>{activate('report',false);window.print()});
+  window.addEventListener('hashchange',()=>{const hash=location.hash.replace('#','');if(['diagnose','prioritize','roi','report'].includes(hash))activate(hash,false)});
+}
+function activate(name,scroll){if(!['diagnose','prioritize','roi','report'].includes(name))return;state.view=name;document.querySelectorAll('.view').forEach(view=>{const show=view.id===`view-${name}`;view.hidden=!show;view.classList.toggle('active',show)});document.querySelectorAll('.nav-link').forEach(btn=>{const active=btn.dataset.view===name;btn.classList.toggle('active',active);if(active)btn.setAttribute('aria-current','page');else btn.removeAttribute('aria-current')});$('breadcrumb-current').textContent=({diagnose:'Overview',prioritize:'Opportunities',roi:'Value simulation',report:'Strategy brief'})[name];if(location.hash!==`#${name}`)history.replaceState(null,'',`#${name}`);if(scroll){document.querySelector(`#view-${name}`).scrollIntoView({behavior:'smooth',block:'start'})}}
+function render(){const score=scoreReadiness();const cases=rankCases(score);$('metric-readiness').textContent=score.toFixed(1);$('metric-stage').textContent=band(score);$('metric-stage-note').textContent=score<35?'Build essential foundations':score<65?'Focus on operational readiness':'Candidate for selective scaling';$('metric-cases').textContent=String(cases.length).padStart(2,'0');$('metric-priority').textContent=cases[0].priority.toFixed(1);$('metric-priority-name').textContent=cases[0].name;const weak=[...DIMENSIONS].sort((a,b)=>state.ratings[a.key]-state.ratings[b.key]).slice(0,2).map(d=>d.short.toLowerCase());$('weakness-copy').textContent=`Strengthen ${weak[0]} and ${weak[1]} before scaling higher-risk use cases. Validate these self-reported scores with stakeholder evidence.`;renderRadar();renderOpportunities(cases);renderRoi();renderReport()}
+function svgText(text,x,y,extra=''){return `<text x="${x}" y="${y}" ${extra}>${esc(text)}</text>`}
+function renderRadar(){const cx=218,cy=169,r=113,steps=5,labels=DIMENSIONS.map(d=>d.axis);const at=(i,radius)=>{const angle=-Math.PI/2+i*2*Math.PI/5;return [cx+Math.cos(angle)*radius,cy+Math.sin(angle)*radius]};let s='';for(let k=1;k<=steps;k++){const pts=DIMENSIONS.map((d,i)=>at(i,r*k/steps).map(n=>n.toFixed(1)).join(',')).join(' ');s+=`<polygon points="${pts}" fill="${k%2?'#f8fbf8':'#f2f7f3'}" stroke="#dfe9e0" stroke-width="1" />`}
+  DIMENSIONS.forEach((d,i)=>{const p=at(i,r);s+=`<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}" stroke="#dfe9e0" />`;const lab=at(i,r+29);let anchor='middle';if(lab[0]<cx-35)anchor='end';else if(lab[0]>cx+35)anchor='start';s+=svgText(labels[i],lab[0],lab[1]+4,`font-size="12.5" font-weight="600" text-anchor="${anchor}" fill="#667e70"`)});
+  const polygon=DIMENSIONS.map((d,i)=>at(i,r*(state.ratings[d.key]-1)/4).map(n=>n.toFixed(1)).join(',')).join(' ');s+=`<polygon points="${polygon}" fill="#2d9670" fill-opacity=".20" stroke="#16816a" stroke-width="3" stroke-linejoin="round" />`;DIMENSIONS.forEach((d,i)=>{const p=at(i,r*(state.ratings[d.key]-1)/4);s+=`<circle cx="${p[0]}" cy="${p[1]}" r="5" fill="#16816a" stroke="#fff" stroke-width="2" />`});$('radar-chart').innerHTML=s}
+function renderOpportunities(cases){$('top-opportunities').innerHTML=cases.slice(0,3).map((c,i)=>`<article class="opportunity-card"><div class="opportunity-rank">0${i+1} / ${esc(c.category.toUpperCase())}</div><h3>${esc(c.name)}</h3><p>${esc(c.description)}</p><div class="opportunity-score"><strong>${c.priority.toFixed(1)}</strong><small>/ 100 PRIORITY</small></div><div class="priority-progress"><span style="width:${c.priority}%"></span></div><div class="opportunity-meta">${esc(c.risk)} risk · KPI: ${esc(c.kpi)}</div></article>`).join('');$('weight-list').innerHTML=weights.map(w=>`<div class="weight-item"><div class="weight-item-head"><span>${esc(w.name)}</span><span>${w.weight}%</span></div><div class="weight-track"><span style="width:${w.weight*2.8}%"></span></div></div>`).join('');$('governance-list').innerHTML=`<div class="governance-row head"><div>OPPORTUNITY</div><div>RISK</div><div>KEY GUARDRAIL</div><div>PILOT KPI</div></div>`+cases.slice(0,4).map(c=>`<div class="governance-row"><div class="name">${esc(c.name)}</div><div><span class="risk-label ${c.risk==='High'?'high':''}">${esc(c.risk)}</span></div><div>${esc(c.guardrail)}</div><div>${esc(c.kpi)}</div></div>`).join('');renderMatrix(cases);
+  const sel=$('usecase');const current=state.selectedCase||cases[0].name;sel.innerHTML=cases.map(c=>`<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');sel.value=current;state.selectedCase=sel.value;
+}
+function renderMatrix(cases){const svg=$('matrix-chart');const xmin=1.3,xmax=5.25,ymin=2.25,ymax=5.3,w=700,h=390,L=65,R=28,T=30,B=56;const px=v=>L+(v-xmin)/(xmax-xmin)*(w-L-R),py=v=>h-B-(v-ymin)/(ymax-ymin)*(h-T-B);let out='';for(let j=2;j<=5;j++){const y=py(j);out+=`<line x1="${L}" y1="${y}" x2="${w-R}" y2="${y}" stroke="#e9efea"/>${svgText(j.toFixed(1),L-14,y+4,'font-size="12.5" text-anchor="end" fill="#9aaba2"')}`};for(let i=2;i<=5;i++){const x=px(i);out+=`<line x1="${x}" y1="${T}" x2="${x}" y2="${h-B}" stroke="#e9efea" />${svgText(i.toFixed(1),x,h-B+22,'font-size="12.5" text-anchor="middle" fill="#9aaba2"')}`};out+=svgText('IMPLEMENTATION EASE →',w/2,h-7,'font-size="12.5" text-anchor="middle" fill="#82978a" font-weight="700" letter-spacing="1"');out+=`<text x="15" y="${h/2}" transform="rotate(-90 15 ${h/2})" text-anchor="middle" font-size="12.5" fill="#82978a" font-weight="700" letter-spacing="1">BUSINESS IMPACT →</text>`;cases.forEach((c,i)=>{const x=px(c.ease),y=py(c.impact);const top=i===0;out+=`<circle cx="${x}" cy="${y}" r="${top?18:15}" fill="${top?'#198167':'#80ab9d'}" opacity=".88" stroke="#fff" stroke-width="3"><title>${esc(c.name)} | priority ${c.priority}/100 | impact ${c.impact}/5 | ease ${c.ease}/5</title></circle>`;out+=svgText(String(i+1),x,y+4,`text-anchor="middle" font-size="13" font-weight="800" fill="#fff"`)});svg.innerHTML=out; $('matrix-case-key').innerHTML=cases.map((c,i)=>`<span><b>${i+1}</b> ${esc(c.name)}</span>`).join('')}
+function renderRoi(){const r=roiModel();$('result-hours').textContent=num(r.hours);$('result-gross').textContent=usd(r.gross);$('result-net').textContent=usd(r.firstYear);$('result-payback').textContent=r.payback===null?'Not reached':`${r.payback.toFixed(1)} mo`;$('result-roi').textContent=r.roi===null?'N/A':pct(r.roi);renderRoiChart(r.cumulative)}
+function renderRoiChart(vals){const s=$('roi-chart'),width=590,height=260,left=77,right=29,top=24,bottom=45;let min=Math.min(...vals,0),max=Math.max(...vals,0);const pad=Math.max((max-min)*.15,5000);min-=pad;max+=pad;const x=i=>left+i*(width-left-right)/3;const y=v=>top+(max-v)/(max-min)*(height-top-bottom);let h='';for(let j=0;j<=4;j++){const v=min+(max-min)*j/4,yy=y(v);h+=`<line x1="${left}" y1="${yy}" x2="${width-right}" y2="${yy}" stroke="#e8efe9" />${svgText((v<0?'−':'')+'$'+Math.round(Math.abs(v)/1000)+'k',left-12,yy+3,'font-size="13" text-anchor="end" fill="#93a499"')}`}const zero=y(0);h+=`<line x1="${left}" y1="${zero}" x2="${width-right}" y2="${zero}" stroke="#b1c7b7" stroke-dasharray="5 4" />`;const pts=vals.map((v,i)=>`${x(i)},${y(v)}`).join(' ');const area=`${x(0)},${zero} ${pts} ${x(3)},${zero}`;h+=`<polygon points="${area}" fill="#dff1e5" fill-opacity=".8" /><polyline points="${pts}" fill="none" stroke="#178066" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5" />`;vals.forEach((v,i)=>{h+=`<circle cx="${x(i)}" cy="${y(v)}" r="5.3" fill="#168167" stroke="#fff" stroke-width="2"><title>${['Initial','Year 1','Year 2','Year 3'][i]}: ${usd(v)}</title></circle>`;h+=svgText(['Initial','Year 1','Year 2','Year 3'][i],x(i),height-12,'font-size="12.5" text-anchor="middle" fill="#82968a"')});s.innerHTML=h}
+function modelData(){return {score:scoreReadiness(),cases:rankCases(scoreReadiness()),r:roiModel()}}
+function renderReport(){const {score,cases,r}=modelData();const top=cases.slice(0,3),stage=band(score),date=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}),company=esc(state.company);const cash=r.roi===null?'N/A':pct(r.roi),payback=r.payback===null?'Not reached':r.payback.toFixed(1)+' months';$('report-content').innerHTML=`<div class="report-head"><div><div class="report-overline">KATHY L / EXECUTIVE BRIEF</div><h3>Enterprise AI transformation</h3><p>Opportunity assessment & prioritized pilot strategy</p></div><div class="report-date">PREPARED<br>${esc(date)}<br>DEMO / INTERNAL</div></div>
+  <div class="report-meta"><div><span>CLIENT</span><strong>${company}</strong></div><div><span>SECTOR</span><strong>${esc(state.sector)}</strong></div><div><span>EMPLOYEES</span><strong>${num(state.employees)}</strong></div></div>
+  <div class="report-section"><h4><em>01</em> Executive summary</h4><p>Based on five self-assessed dimensions, the organization receives a readiness score of <strong>${score.toFixed(1)}/100 (${stage})</strong>. The most attractive current pilot hypothesis is <strong>${esc(top[0].name)}</strong>, with a heuristic priority score of ${top[0].priority.toFixed(1)}/100. Conduct a limited discovery phase to test technical feasibility, process ownership and governance requirements before committing to a scaled deployment.</p></div>
+  <div class="report-section"><h4><em>02</em> Top three opportunities</h4><div class="report-points">${top.map((c,i)=>`<div class="report-point"><span>0${i+1} / ${c.priority.toFixed(1)} PRIORITY</span><strong>${esc(c.name)}</strong><p>${esc(c.kpi)}<br>${esc(c.risk)} risk</p></div>`).join('')}</div><p>Priority weights: business impact 35%, implementation ease 30%, sector fit 20%, readiness fit 15%. Case ratings are expert-style illustrative assumptions.</p></div>
+  <div class="report-section"><h4><em>03</em> Indicative business case</h4><table class="report-table"><tbody>
+    <tr><td>Use case</td><td>${esc(state.selectedCase||top[0].name)}</td></tr>
+    <tr><td>Employees in pilot / effective adoption</td><td>${num(state.roi.affected)} / ${state.roi.adoption}%</td></tr>
+    <tr><td>Annual hours released</td><td>${num(r.hours)} h</td></tr>
+    <tr><td>Gross capacity value / year</td><td>${usd(r.gross)}</td></tr>
+    <tr><td>One-time / annual recurring investment</td><td>${usd(state.roi.upfront)} / ${usd(state.roi.recurring)}</td></tr>
+    <tr><td>First-year net capacity value</td><td>${usd(r.firstYear)}</td></tr>
+    <tr><td>Indicative first-year ROI / simple payback</td><td>${cash} / ${payback}</td></tr>
+  </tbody></table></div>
+  <div class="report-section"><h4><em>04</em> Suggested 90-day pilot plan</h4><div class="roadmap"><div><span>DAYS 01—30</span><strong>Discover</strong><p>Map workflows, secure data permissions, establish baseline KPIs and involve users.</p></div><div><span>DAYS 31—60</span><strong>Validate</strong><p>Prototype a narrow use case and test accuracy, exception handling and adoption.</p></div><div><span>DAYS 61—90</span><strong>Decide</strong><p>Evaluate governance controls, quantify actual benefit and set scale / stop criteria.</p></div></div></div>
+  <p class="report-disclaimer">Methodology note: Fictional scenario and self-assessed heuristic ratings, not a validated industry benchmark. Labor-capacity value does not necessarily represent realized cash savings. No personal or company data is sent to a server. Independent portfolio project; not affiliated with Deloitte.</p>`}
+function markdownReport(){const {score,cases,r}=modelData(),top=cases.slice(0,3);const clean=s=>String(s).replace(/[\r\n]/g,' ').replace(/([*_`\[\]#])/g,'\\$1');const cell=(k,v)=>`| ${k} | ${v} |`;const report=[
+  '# AI TRANSFORMATION NAVIGATOR',
+  '## Illustrative executive strategy brief','',
+  `**Company:** ${clean(state.company)}`,
+  `**Sector:** ${clean(state.sector)}`,
+  `**Employees:** ${state.employees.toLocaleString('en-US')}`,
+  `**Readiness:** ${score.toFixed(1)}/100 (${band(score)})`,'',
+  '### 1. Readiness assessment','',
+  ...DIMENSIONS.map(d=>`- ${d.key}: ${state.ratings[d.key]}/5 (weight ${d.weight*100}%)`),'',
+  'Readiness = Σ [(rating − 1) / 4 × weight × 100]. Self-assessed heuristic, not a validated benchmark.','',
+  '### 2. Prioritized use cases','',
+  ...top.flatMap((c,i)=>[`${i+1}. **${c.name}** — Priority ${c.priority.toFixed(1)}/100; ${c.risk.toLowerCase()} risk.`, `   - Scope: ${c.description}`,`   - Pilot KPI: ${c.kpi}`,`   - Guardrail: ${c.guardrail}`]),'',
+  'Priority model: 35% business impact, 30% ease, 20% sector fit, 15% readiness fit. Scores are illustrative.','',
+  '### 3. Financial scenario (USD)','',
+  '| Measure | Value |','|---|---:|',
+  cell('Pilot use case',clean(state.selectedCase||top[0].name)),
+  cell('Employees affected',num(state.roi.affected)),
+  cell('Hours saved per week',state.roi.hours),
+  cell('Adoption rate',state.roi.adoption+'%'),
+  cell('Loaded hourly cost',usd(state.roi.cost)),
+  cell('Working weeks',state.roi.weeks),
+  cell('One-time cost',usd(state.roi.upfront)),
+  cell('Recurring annual cost',usd(state.roi.recurring)),
+  cell('Annual hours released',num(r.hours)),
+  cell('Gross annual capacity value',usd(r.gross)),
+  cell('First-year net capacity value',usd(r.firstYear)),
+  cell('First-year ROI',r.roi===null?'N/A':pct(r.roi)),
+  cell('Simple payback',r.payback===null?'Not reached':r.payback.toFixed(1)+' months'),'',
+  '**Caution:** Employee capacity released is not the same as booked cash savings. Realized benefits depend on implementation, adoption, redeployment and observed outcomes.','',
+  '### 4. Suggested 90-day pilot roadmap','',
+  '- **Days 1–30 — Discover:** Map process, involve stakeholders, establish baseline KPI, assess governance and data access.',
+  '- **Days 31–60 — Validate:** Prototype a narrow use case, evaluate accuracy and human review, test end-user uptake.',
+  '- **Days 61–90 — Decide:** Measure actual results, estimate realized economics and apply predefined scale / stop criteria.','',
+  '### Disclosure','',
+  'Independent educational portfolio project. Not affiliated with Deloitte or any consulting firm. Scenario ratings are hypothetical. No large-language-model API is called; all calculations run locally in the browser.'
+];return report.join('\n')+'\n'}
+function downloadMarkdown(){const blob=new Blob([markdownReport()],{type:'text/markdown;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);const short=state.company.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,35)||'client';a.download=`${short}-ai-strategy-brief.md`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function init(){const year=new Date().getFullYear();$('today').textContent=year;$('copyright-year').textContent=year;setupControls();$('affected').max=state.employees;$('adoption').style.setProperty('--fill','60%');render();const hash=location.hash.replace('#','');activate(['diagnose','prioritize','roi','report'].includes(hash)?hash:'diagnose',false)}
+document.addEventListener('DOMContentLoaded',init);
+
+</script>
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#diagnose" aria-label="AI Transformation Navigator home">
-        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-        <div class="brand-type"><strong>ATN<span class="brand-dot">.</span></strong><small>STRATEGY STUDIO</small></div>
+      <a class="brand" href="#diagnose" aria-label="Kathy L Strategy Lab home">
+        <div class="brand-mark" aria-hidden="true">
+          <svg class="dog-icon" viewBox="0 0 64 64" focusable="false">
+            <path d="M22 22 17 17c-4-4-9-1-9 5v12c0 6 4 8 10 4" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m42 22 5-5c4-4 9-1 9 5v12c0 6-4 8-10 4" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 28c0-10 6-15 12-15s12 5 12 15v11c0 9-6 16-12 16s-12-7-12-16V28Z" fill="none" stroke="currentColor" stroke-width="3.1" stroke-linejoin="round"/>
+            <circle cx="27" cy="33" r="2" fill="currentColor"/><circle cx="37" cy="33" r="2" fill="currentColor"/>
+            <path d="M28.5 41q3.5-2.5 7 0l-3.5 3z" fill="currentColor"/>
+            <path d="M32 44v3m0 0c-1.7 1.8-3.5 2-5 1m5-1c1.7 1.8 3.5 2 5 1" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-type"><strong>KATHY L</strong><small>STRATEGY LAB</small></div>
       </a>
       <div class="sidebar-section-label">WORKSPACE <span>01 / 04</span></div>
       <nav class="navigation" aria-label="Primary navigation">
@@ -131,7 +454,7 @@
           <article class="report-sheet" id="report-content" aria-label="Executive strategy brief"></article>
         </section>
 
-        <footer class="footer"><div><strong>ATN<span>.</span></strong> © <span id="copyright-year"></span> · Independent strategy prototype</div><div>Not affiliated with Deloitte or any consulting firm. No external API calls.</div></footer>
+        <footer class="footer"><div><strong>KATHY L</strong> © <span id="copyright-year"></span> · Independent strategy prototype</div><div>Not affiliated with Deloitte or any consulting firm. No external API calls.</div></footer>
       </main>
     </div>
   </div>
