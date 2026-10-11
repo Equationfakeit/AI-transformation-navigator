@@ -1,6 +1,6 @@
 # AI Transformation Navigator
 
-A Python/Streamlit demo for **enterprise AI strategy and transformation**. Created as a personal interview and learning project. **Not affiliated with or endorsed by Deloitte.**
+A Python/Streamlit demo for **enterprise AI strategy and transformation**. Created as a personal interview and learning project.
 
 ## What it does
 
